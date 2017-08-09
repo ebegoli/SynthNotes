@@ -21,8 +21,7 @@ Patient model - age, gender, demographics, status at home, living conditions.
 
 ## References
 
-[THE CLINICIAN’S GUIDE TO WRITING TREATMENT PLANS AND PROGRESS NOTES (https://www.sccgov.org/sites/dads/Adult%20System%20of%20Care%20Policy%20-%20Procedure/Documents/Clinician_Gde_toolkit.pdf
-) 
+[THE CLINICIAN’S GUIDE TO WRITING TREATMENT PLANS AND PROGRESS NOTES] (https://www.sccgov.org/sites/dads/Adult%20System%20of%20Care%20Policy%20-%20Procedure/Documents/Clinician_Gde_toolkit.pdf)  
 
 [Psychiatric Notes for Depressive Disorders](http://medicaltranscriptionwordhelp.synthasite.com/mental-status-exam-common-words-and-phrases.php)
 
@@ -33,6 +32,6 @@ This document: copyright 2013 by Jan Willer, Ph.D.](http://drwiller.com/wp-conte
 [Suicide Prevention - NIH](https://www.nimh.nih.gov/health/topics/suicide-prevention/index.shtml)
 
 
-[Suicide Prevention - How to Document, Social Work[(http://www.socialwork.career/2016/12/suicidal-ideation-how-to-document.html)
+[Suicide Prevention - How to Document, Social Work](http://www.socialwork.career/2016/12/suicidal-ideation-how-to-document.html)
 
 [Mental Health and Addiction Services - Sample Counseling Progress Notes](http://mha.ohio.gov/Portals/0/assets/Regulation/LicensureAndCertification/sample-counseling-progress-notes.pdf)
