@@ -35,3 +35,14 @@ This document: copyright 2013 by Jan Willer, Ph.D.](http://drwiller.com/wp-conte
 [Suicide Prevention - How to Document, Social Work](http://www.socialwork.career/2016/12/suicidal-ideation-how-to-document.html)
 
 [Mental Health and Addiction Services - Sample Counseling Progress Notes](http://mha.ohio.gov/Portals/0/assets/Regulation/LicensureAndCertification/sample-counseling-progress-notes.pdf)
+
+[Mental Health and Addiction Services - Medical Necessity Presentation]
+(http://mha.ohio.gov/Portals/0/assets/Regulation/LicensureAndCertification/medical-necessity-presentation-20100405.pdf)
+
+[Sample SOAP note on depression]
+(http://intranet.vcom.vt.edu/clinical/Clinical_Rotation_&_Department_Information/Resources/dept_PSYCH/SupplementalDocuments/The%20Psychiatric%20SOAP%20Note.pdf)
+
+[Another sample depression note]
+(https://cchs.ua.edu/wp-content/blogs.dir/1/files/2011/02/Patient_Write-up_Example_2.pdf)
+
+
