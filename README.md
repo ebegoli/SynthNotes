@@ -7,15 +7,17 @@ The purpose of this library is to generate randomly structured, high-fidelity ps
 
 ## Note Structure
 
+SOAP
+
 ## Implementation
 
 Patient model - age, gender, demographics, status at home, living conditions. 
 
+Patient Model - set of variables representing the patient history, and the mental health characteristics/symptoms of the patient
+
+Narrator Model - set of variables representing the writing style (grammar, thoroughness, use of abbreviations) and experience of the author
+
 ### Algorithm 
-
-### Architecture
-
-## Templates
 
 ## Running the Generator
 
