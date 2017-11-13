@@ -10,6 +10,13 @@ def strTimeProp(start, end, format, prop):
     start.  The returned time will be in the specified format.
     """
 
+    """ One example: http://learn.chm.msu.edu/clinicalhpcases/content/psychiatry/Psychiatry_HP.pdf
+    """
+
+    """ Use of terminology: http://web.utah.edu/umed/courses/year3/psychiatry/psychaid.html#soon 
+    """ 
+
+
     stime = time.mktime(time.strptime(start, format))
     etime = time.mktime(time.strptime(end, format))
 
@@ -43,7 +50,16 @@ collateral_information = "Collateral information" "Stresses"
 
 #Staff reports some|no|frequent agitation, irregular|regular|poor sleep, general|great|no cooperativeness|great, 
 # and overally good|poor|problematic|satisfactory behavior.
-staff_observations = "Staff observations" = ["${agitation$}, ${sleep log$}, ${cooperation}, ${behavior}"]
+
+agitation = random.choice(["some","no","frequent"])
+sleep_log = random.choice(["irregular","regular","poor"])
+cooperativeness = random.choice(["generally","not","greatly"])
+behavior = random.choice(["good","poor","problematic","satisfactory"])
+staff_observations = "Staff observations: Patient is experiencing ${agitation} agitation, a sleep is ${sleep_log$}, \
+patient is ${cooperation} cooperative, and the behavior is ${behavior}."
+
+template.replace(staff_observations, agitation)
+
 
 # TODO: research common medications and frequency
 medications = "Medications" = ["${name, dose, route, frequency, duration, therapeutic and side effects, compliance}"]
@@ -61,7 +77,7 @@ general_behavior = "General behavior: mannerisms ____, gestures ____, psychomoto
 ",eye contact,able to follow commands/requests,compulsions"
 
 #Write as Patient attitude is .... Include maybe more than one.
-attitude = "Attitude: "," cooperative, "," hostile, "," defensive, "," open, "," secretive, "," evasive, "," suspicious, "," apathetic,"+
+attitude = "Attitude is "," cooperative, "," hostile, "," defensive, "," open, "," secretive, "," evasive, "," suspicious, "," apathetic,"+
 "easily distracted,focused, etc."
 
 LOC = "LOC: "," vigilant, "," alert, "," drowsy, "," lethargic, "," stuporous, "," asleep, "," comatose, "," confused, "," fluctuating, etc."
@@ -101,19 +117,25 @@ thought_content = "Thought content: "," delusions (type: "," paranoid/persecutor
 ",agoraphobia,specific/simple),obsessions"
 
 insight_judgment = "Insight/Judgement: TODO/CONTINUE"
-insight_judgment = "Insight/Judgement:","aware of problem/role","abstract (similarities, proverbs),understand facts,draw conclusions","problem solving"
+insight_judgment = "Insight/Judgement: ${awareness_of_problems}","abstract (similarities, proverbs), ${facts_understand}" + 
+",${drawing_conclusions}, ${problem_solving}."
 
 lab_tests = "Laboratory & other tests"
 
-assessment = "Assessment:Working primary diagnosis, current differential, other diagnoses"
-axis_I = "DSM-IV Axis I:"
-axis_II = "DSM-IV Axis II:"
-axis_III = "DSM-IV Axis III:"
+assessment = "Assessment: ${working_primary_diagnosis}, ${current_differential_diagnosis}, ${other_diagnoses}."
+
+""" Definition of axis: https://faculty.fortlewis.edu/burke_b/abnormal/abnormalmultiaxial.htm
+    In DSM-V, there is only one axis.
+"""
+axis_I = "DSM-IV Axis I:{dsm_iv_axis_i}"
+axis_II = "DSM-IV Axis II:{dsm_iv_axis_ii}"
+axis_III = "DSM-IV Axis III:{dsm_iv_axis_iii}"
+DSM_V_ axis = "DSM-V Axis: ${dsm_v_axis}"
 
 plan = "Plan:"
-diagnostic="Diagnostic: obtain collateral information, further observation or questioning, tests, etc."
+diagnostic="Diagnostic: ${obtain_collateral_information}, ${further_observation}, ${questioning}, ${tests}, etc."
 specific_treatment = "Specific treatment: based upon diagnosis, e.g., medication titration, how many more ECT sessions, etc."
-general_treatment = "General treatment: reduce stresses, environmental modification, symptomatic (e.g., insomnia), education"
+general_treatment = "General treatment: ${stres_reduction}, ${environmental_modification}, ${symptomatic} (e.g., insomnia), ${education}"
 
 disposition = "Disposition: next source of care, follow-up, back-up plans"
-reporting_physician = "$md_name$, title (e.g., MS3), pager number, and sign"
+reporting_physician = "${md_name}, ${title} (e.g., MS3), ${pager_number}, ${signature}"
