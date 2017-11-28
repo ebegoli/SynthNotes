@@ -1,1 +1,7 @@
-The patient is suffering from $intensity depression. The patient is on antidepressant $medName.
+The patient is suffering from $intensity depression. The patient is on
+antidepressant $medName. There is $agitation agitation. The patient can $attention
+on most things.
+
+The patient's sleep is $sleep_log and behavior is $behavior. The patient speaks
+$speech_volume and the speech is $speech_rate and $speech_rhythm. The patient's
+mood is $mood.

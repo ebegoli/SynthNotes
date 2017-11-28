@@ -20,6 +20,7 @@ def main(base_file, subs_file, n_notes=1, prefix='', ext='note'):
     with open(subs_file, 'r') as fh:
         subs = json.load(fh)
 
+    # TODO: Error and format checking on input base
     # create a template from the base
     t = Template(base)
 
