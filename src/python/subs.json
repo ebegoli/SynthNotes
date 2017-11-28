@@ -1,7 +1,6 @@
 {
   "intensity": ["mild", "low", "severe"],
   "medName": ["Prozac", "Xanax"],
-<<<<<<< HEAD
   "agitation": ["some","no","frequent"],
   "attitude": [" cooperative", "hostile", "defensive", "open", "secretive", "evasive",
       "suspicious", "apathetic", "easily distracted", "focused"],
@@ -43,9 +42,7 @@
  "specific_treatment": ["medical titration", "ECT sessions"],
  "general_treatment": ["reduce stress", "environmental modification", "symptomatic (e.g. insomnia)",
             "education"],
- "disposition": ["next source of care", "follow-up", "back-up plans"]
-
-=======
+ "disposition": ["next source of care", "follow-up", "back-up plans"],
   "agitation": ["some", "no", "frequent"],
   "atitude": ["cooperative", "hostile", "defensive", "open", "secretive", "evasive",
       "suspicious", "apathetic", "easily distracted", "focused"],
@@ -59,5 +56,4 @@
   "speech_rhythm": ["slurred", "clear", "with appropriately placed inflections",
       "hesitant", "with good articulation", "aphasic"],
   "mood": ["depressed", "euthymic", "elevated", "euphoric", "irritable", "anxious"]
->>>>>>> 94a0ebd8af5225b74ba1b6a2e9678061ce438307
 }
