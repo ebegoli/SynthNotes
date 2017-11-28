@@ -9,10 +9,12 @@
 import random
 import json
 import argparse
-
+from tqdm import trange
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
+from os import path
 from string import Template
 
-def main(base_file, subs_file, n_notes=1, prefix='', ext='note'):
+def main(base_file, subs_file, n_notes=1, prefix='', ext='note', outdir='./'):
 
     # read the files, the subs file is read using json method
     with open(base_file, 'r') as fh:
@@ -24,15 +26,19 @@ def main(base_file, subs_file, n_notes=1, prefix='', ext='note'):
     t = Template(base)
 
     print("Generating {} synthetic notes".format(n_notes))
-    for i in range(n_notes):
+    for i in trange(n_notes):
         # create a dictionary for subs by randomly selecting values from the list
         d = {k: random.choice(v) for k, v in subs.items()}
 
         note = t.safe_substitute(d)
-        out_file = prefix + '_' + str(i+1) + '.' + ext
-        with open(out_file, 'w') as fh:
+        out_file = prefix + str(i+1) + '.' + ext
+        out_path = path.join(outdir, out_file)
+
+        with open(out_path, 'w') as fh:
+            print("writing to {}".format(out_path))
+
             fh.write(note)
-    print(note)
+    # print(note)
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
@@ -41,5 +47,6 @@ if __name__=='__main__':
     parser.add_argument('-n', '--number', help='Number of notes required (default is 1)', default=1)
     parser.add_argument('-p', '--prefix', help='Prefix before number (default is note_)', default='note_')
     parser.add_argument('-e', '--ext', help='Extension of file (default is note)', default='note')
+    parser.add_argument('-o', '--outdir', help='Directory to write output files to', default='./')
     args = parser.parse_args()
-    main(args.baseFile, args.subsFile, int(args.number), args.prefix, args.ext)
+    main(args.baseFile, args.subsFile, int(args.number), args.prefix, args.ext, args.outdir)

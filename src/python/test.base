@@ -1,1 +1,76 @@
+### TODO: replace this with variables
+Date and Time: "1/1/2008 1:30 PM"
+
+Subjective:
+
+Symptoms:
+
+Collateral information stresses:
+
+Staff observations: Patient is experiencing $agitation agitation, a sleep is $sleep_log, patient is ${cooperation} cooperative, and the behavior is $behavior.
+
+
 The patient is suffering from $intensity depression. The patient is on antidepressant $medName.
+
+Other treatments:
+
+Objective:
+
+Appearance:
+    Gait:
+    Posture:
+    Clothes:
+    Grooming:
+    Mileage:
+
+General Behavior:
+    Mannerisms:
+    Gestures:
+    Psychomotor activity:
+    Expression:
+
+Attitude: The patients attitude is $attitude
+Attention: $attention
+Orientation: $orientation
+LOC: $loc
+Memory: The patients memory is $memory
+Intellectual: The patients fund of knowledge is ____ and their vocabulary is ____
+MMSE: __ points out of 30 achieved, missing the following tasks ____
+Speech:
+    volume/tone:  $speech_volume,
+    rate: $speech_rate
+    amount: $speech_amount
+    fluency/rhythm: $speech_rhythm
+Mood: The mood of the patient is $mood.
+Affect: The affect is $affect
+    Mood fluctuations: The patients mood fluctuations are $mood_fluctuations
+    Mood range: The patients mood range is $mood_range
+    Mood intensity: The patients mood intensity is $mood_intensity
+    Mood quality: The patients mood quality is $quality
+
+Thought Process: Thought process is $thought_process
+Thought Content:
+    Delusions: $thought_delusions
+    Illusions/hallucinations: $thought_illusions
+    Suicide/Homicide: $thought_suicide
+    Phobias: $phobias
+
+Insight/Judgment: $insight
+
+Laboratory and Other Tests:
+
+
+Assessment:
+    DSM-IV Axis I:
+    DSM-IV Axis II:
+    DSM-IV Axis III:
+
+Plan:
+ Diagnostic: $diagnostic
+ Specific Treatment: $specific_treatment
+ General Treatment: $general_treatment
+ Disposition: $disposition
+
+ Name:
+ Title:
+ Signature:

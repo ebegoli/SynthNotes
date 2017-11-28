@@ -5,7 +5,7 @@ import time
 
 from string import Template
 
-    
+
 def strTimeProp(start, end, format, prop):
     """Get a time at a proportion of a range of two formatted times.
 
@@ -18,8 +18,8 @@ def strTimeProp(start, end, format, prop):
     """ One example: http://learn.chm.msu.edu/clinicalhpcases/content/psychiatry/Psychiatry_HP.pdf
     """
 
-    """ Use of terminology: http://web.utah.edu/umed/courses/year3/psychiatry/psychaid.html#soon 
-    """ 
+    """ Use of terminology: http://web.utah.edu/umed/courses/year3/psychiatry/psychaid.html#soon
+    """
     stime = time.mktime(time.strptime(start, format))
     etime = time.mktime(time.strptime(end, format))
     ptime = stime + prop * (etime - stime)
@@ -50,7 +50,7 @@ subjective = Template("Subjective: $symptoms $course")
 
 collateral_information = Template("Collateral information Stresses")
 
-#Staff reports some|no|frequent agitation, irregular|regular|poor sleep, general|great|no cooperativeness|great, 
+#Staff reports some|no|frequent agitation, irregular|regular|poor sleep, general|great|no cooperativeness|great,
 # and overally good|poor|problematic|satisfactory behavior.
 
 agitation_value = random.choice(["some","no","frequent"])
@@ -114,7 +114,7 @@ impulsivity,command hallucinations,intention,contracting), phobias (type:,social
 ,agoraphobia,specific/simple),obsessions"
 
 insight_judgment = "Insight/Judgement: TODO/CONTINUE"
-insight_judgment = "Insight/Judgement: ${awareness_of_problems}","abstract (similarities, proverbs), ${facts_understand}" + 
+insight_judgment = "Insight/Judgement: ${awareness_of_problems}","abstract (similarities, proverbs), ${facts_understand}" +
 ",${drawing_conclusions}, ${problem_solving}."
 
 lab_tests = "Laboratory & other tests"
