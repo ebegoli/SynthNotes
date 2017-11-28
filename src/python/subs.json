@@ -13,7 +13,5 @@
   "speech_amount": ["talkative","spontaneous","expansive","paucity","poverty"],
   "speech_rhythm": ["slurred","clear", "with appropriately placed inflections",
       "hesitant", "with good articulation", "aphasic"],
-  "mood": ["depressed", "euthymic", "elevated", "euphoric", "irritable", "anxious"],
-
-
+  "mood": ["depressed", "euthymic", "elevated", "euphoric", "irritable", "anxious"]
 }

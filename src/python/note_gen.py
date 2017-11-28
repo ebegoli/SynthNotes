@@ -29,7 +29,7 @@ def main(base_file, subs_file, n_notes=1, prefix='', ext='note'):
         d = {k: random.choice(v) for k, v in subs.items()}
 
         note = t.safe_substitute(d)
-        out_file = prefix + '_' + str(i+1) + '.' + ext
+        out_file = prefix + str(i+1) + '.' + ext
         with open(out_file, 'w') as fh:
             fh.write(note)
     print(note)
