@@ -1,6 +1,7 @@
 {
   "intensity": ["mild", "low", "severe"],
   "medName": ["Prozac", "Xanax"],
+<<<<<<< HEAD
   "agitation": ["some","no","frequent"],
   "attitude": [" cooperative", "hostile", "defensive", "open", "secretive", "evasive",
       "suspicious", "apathetic", "easily distracted", "focused"],
@@ -44,4 +45,19 @@
             "education"],
  "disposition": ["next source of care", "follow-up", "back-up plans"]
 
+=======
+  "agitation": ["some", "no", "frequent"],
+  "atitude": ["cooperative", "hostile", "defensive", "open", "secretive", "evasive",
+      "suspicious", "apathetic", "easily distracted", "focused"],
+  "attention": ["can attend", "can concentrate", "distractible", "digit span",
+      "DLROW", "calculations"],
+  "sleep_log": ["irregular", "regular", "poor"],
+  "behavior": ["good", "poor", "problematic", "satisfactory"],
+  "speech_volume": ["loud", "soft", "monotone", "weak", "strong"],
+  "speech_rate": ["fast", "slow", "normal", "pressured"],
+  "speech_amount": ["talkative", "spontaneous", "expansive", "paucity", "poverty"],
+  "speech_rhythm": ["slurred", "clear", "with appropriately placed inflections",
+      "hesitant", "with good articulation", "aphasic"],
+  "mood": ["depressed", "euthymic", "elevated", "euphoric", "irritable", "anxious"]
+>>>>>>> 94a0ebd8af5225b74ba1b6a2e9678061ce438307
 }
