@@ -11,7 +11,6 @@
  "orientation": ["person", "place", "time", "situation"],
   "sleep_log": ["irregular","regular","poor"],
   "memory": ["immediate", "recent", "remote"],
-  ""
   "behavior": ["good","poor","problematic","satisfactory"],
   "speech_volume": ["loud","soft","monotone","weak","strong"],
   "speech_rate": ["fast","slow","normal","pressured"],
