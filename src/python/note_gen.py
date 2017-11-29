@@ -10,7 +10,6 @@ import random
 import json
 import argparse
 from tqdm import trange
-from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 from os import path
 from string import Template
 
