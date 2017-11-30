@@ -11,11 +11,9 @@ SOAP
 
 ## Implementation
 
-Patient model - age, gender, demographics, status at home, living conditions. 
+Patient model - age, gender, demographics, status at home, living conditions, set of variables representing the patient history, and the mental health characteristics/symptoms of the patient, and the variability associated with the age, gender, general demographics. 
 
-Patient Model - set of variables representing the patient history, and the mental health characteristics/symptoms of the patient
-
-Narrator Model - set of variables representing the writing style (grammar, thoroughness, use of abbreviations) and experience of the author
+Narrator Model - set of variables representing the writing style (grammar, thoroughness, use of abbreviations) and experience of the author. 
 
 ### Algorithm 
 
