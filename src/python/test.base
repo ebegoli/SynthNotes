@@ -1,76 +1,87 @@
 ### TODO: replace this with variables
 Date and Time: "1/1/2008 1:30 PM"
-
+----------------------------------------------------------------------
 Subjective:
-
-Symptoms:
+--------------------------------------------------------------
+Since last visit patient states $gender is feeling better although
+still somewhat $mood, is $rx_adherence with $med_name as Rxed and denies side
+effects (progress since last visit with current issues). He continues to report
+early morning awakening. Appetite is improved and weight is $weight_fluc.
+Patient still reports some difficulty with concentrating on his work and feeling
+“exhausted” by the end of the day. ROS is otherwise negative (Review of systems
+for both nonspecific and specific symptoms which may be related to depression).
+Patient denies currently using substances (historical information which may be
+relevant to symptoms and differential diagnosis). Symptoms:
 
 Collateral information stresses:
 
-Staff observations: Patient is experiencing $agitation agitation, a sleep is $sleep_log, patient is ${cooperation} cooperative, and the behavior is $behavior.
+Staff observations: Patient is experiencing $agitation agitation, a sleep is
+$sleep_log, patient is ${cooperation} cooperative, and the behavior is
+$behavior.
 
+Medications:
 
-The patient is suffering from $intensity depression. The patient is on antidepressant $medName.
+Allergies:
 
 Other treatments:
 
+--------------------------------------------------------------
 Objective:
+--------------------------------------------------------------
+    Vitals:
+        Blood pressure: $blood_pressure
+        Pulse: $pulse
+        Weight: $weight
 
-Appearance:
-    Gait:
-    Posture:
-    Clothes:
-    Grooming:
-    Mileage:
+The patient is $race, $age old $gender, and suffers from $condition. This is
+patient's $ordinal visit.
 
-General Behavior:
-    Mannerisms:
-    Gestures:
-    Psychomotor activity:
-    Expression:
+Neurological status of strength, sensation, cranial nerves and reflexes is
+unremarkable. Mental status reveals dress is $dress, neatly groomed $gender.
+Behavior is $behavior and speech is $speech_rhythm. Mood is $mood. Affect is
+$mood_range but $affect_quality. Thought process is $thought_process. The
+patient denies suicidal or homicidal ideation or intent. Thought illusions are
+$thought_illusions. Memory is $memory. He is able to complete serial
+subtractions by 7 from 100 x 2. Patient's insight appears to be $insight and
+judgment is $thought_judgment by testing. Patient reports sleep to be
+$sleep_log.
 
-Attitude: The patients attitude is $attitude
-Attention: $attention
-Orientation: $orientation
-LOC: $loc
-Memory: The patients memory is $memory
-Intellectual: The patients fund of knowledge is ____ and their vocabulary is ____
-MMSE: __ points out of 30 achieved, missing the following tasks ____
-Speech:
-    volume/tone:  $speech_volume,
-    rate: $speech_rate
-    amount: $speech_amount
-    fluency/rhythm: $speech_rhythm
-Mood: The mood of the patient is $mood.
-Affect: The affect is $affect
-    Mood fluctuations: The patients mood fluctuations are $mood_fluctuations
-    Mood range: The patients mood range is $mood_range
-    Mood intensity: The patients mood intensity is $mood_intensity
-    Mood quality: The patients mood quality is $quality
+Patient displays a $attitude and an attention that is $attention. Clients memory
+is $memory.  Patient achieved $ordinal points out of 30 on MMSE.  Patient was
+able to speak $speech_amount with a $speech_rhythm rhythm.  Their volume was
+$speech_volume.
 
-Thought Process: Thought process is $thought_process
-Thought Content:
-    Delusions: $thought_delusions
-    Illusions/hallucinations: $thought_illusions
-    Suicide/Homicide: $thought_suicide
-    Phobias: $phobias
+The patients fund of knowledge is general and their vocabulary is strong.
 
-Insight/Judgment: $insight
+Patient shows a $mood mood that is $mood_intensity.  Throughout the session
+patients mood fluctuations were $mood_fluctuation.
+
+Patient described phobia of $phobias and delusions of type $thought_delusions.
+Reports $thought_illusions illusions.  Their suicide thoughts are observed to be
+$thought_suicide and homicide thoughts are $thoughts_homicide.
+
 
 Laboratory and Other Tests:
 
+-----------------------------------------------------------------------
+Assessment
+-----------------------------------------------------------------------
+    DSM-IV:
+        Axis I (principal disorder): $condition
+        Axis II (personality disorder): $axis_ii
 
-Assessment:
-    DSM-IV Axis I:
-    DSM-IV Axis II:
-    DSM-IV Axis III:
+        Axis III (medical/neurological):
+            - Per medical history
+        Axis IV (psychosocial stresses): $axis_iv
+        Axis V (global assessment of functioning: 0-100): $gaf
 
-Plan:
- Diagnostic: $diagnostic
- Specific Treatment: $specific_treatment
- General Treatment: $general_treatment
- Disposition: $disposition
 
- Name:
- Title:
- Signature:
+-----------------------------------------------------------------------
+Plan
+-----------------------------------------------------------------------
+Diagnostic: $diagnostic
+Specific Treatment: $specific_treatment
+General Treatment: $general_treatment
+Disposition: $disposition
+
+ Name: Title: Signature:
