@@ -1,6 +1,7 @@
 import random
 import faker
 
+
 class Property(object):
     def __init__(self, name, values=[], static=False, **kwargs):
         self.name = name
@@ -9,9 +10,8 @@ class Property(object):
         self.hasChosen = False
         self.value = None
 
-
     def shouldChooseNewValue(self):
-        return not ( self.static and self.hasChosen )
+        return not (self.static and self.hasChosen)
 
     def chooseVal(self):
         if self.shouldChooseNewValue():
@@ -22,9 +22,6 @@ class Property(object):
 
     def reset(self):
         self.hasChosen = False
-
-    def __str__(self):
-        return str(self.chooseVal())
 
 
 class PropOrdinal(Property):
@@ -38,18 +35,15 @@ class PropOrdinal(Property):
 
         self.high = kwargs.get('high', 0)
         self.low = kwargs.get('low', 0)
-
         if self.high < self.low:
             raise ValueError("Ordinal 'low' range val must be greater than or equal to 'high'.")
 
-
     def chooseVal(self):
         if self.shouldChooseNewValue():
-            self.value = random.randint(self.high, self.low)
+            self.value = random.randint(self.low, self.high)
             self.hasChosen = True
 
         return self.value
-
 
 
 class PropDateTime(Property):
@@ -65,7 +59,6 @@ class PropDateTime(Property):
             self.hasChosen = True
 
         return self.value
-
 
 
 class PropertyFactory(object):

@@ -5,7 +5,18 @@
   "ordinal": [1, 2, 3, 4, 5],
   "race": ["American Indian", "Asian", "Black", "Hispanic", "White",
       "Pacific Islander"],
-  "blood_pressure": ["122/90"],
+  "systolic": {
+     "low": 20,
+      "high": 220,
+      "type": "ordinal",
+      "static": true
+  },
+    "diastolic": {
+      "low": 20,
+      "high": 150,
+      "static": true,
+      "type": "ordinal"
+    },
   "pulse": ["80", "95", "100", "55"],
   "dress": ["appropriate", "inappropriate"],
   "weight": ["170"],
@@ -17,17 +28,10 @@
       "suspicious", "apathetic", "easily distracted", "focused"],
   "attention": ["can attend", "can concentrate", "distractible", "digit span",
       "DLROW","calculations"],
-  "loc": ["vigilant", "alert", "drowsy", "lethargic", "stuporout", "asleep",
+  "loc": ["vigilant", "alert", "drowsy", "lethargic", "stuporous", "asleep",
             "comatose", "confused", "fluctuating"],
  "orientation": ["person", "place", "time", "situation"],
-  "sleep_log": ["irregular","regular","poor"],
   "memory": ["immediate", "recent", "remote"],
-  "behavior": ["good","poor","problematic","satisfactory"],
-  "speech_volume": ["loud","soft","monotone","weak","strong"],
-  "speech_rate": ["fast","slow","normal","pressured"],
-  "speech_amount": ["talkative","spontaneous","expansive","paucity","poverty"],
-  "speech_rhythm": ["slurred","clear", "with appropriately placed inflections",
-      "hesitant", "with good articulation", "aphasic"],
   "mood": ["depressed", "euthymic", "elevated", "euphoric", "irritable", "anxious"],
  "affect": ["appropriate to situation", "consistent with mood", "congruent with thought content"],
  "mood_fluctuation": ["labile", "even"],
@@ -75,5 +79,10 @@
     "Economic problems", "Problem with access to health care services",
     "Problems related to interaction with legal system / crime",
     "Other psychosocial and environmental problems"],
-"gaf": ["1-100"]
+"gaf": {
+  "high": 100,
+  "low": 0,
+  "type": "ordinal",
+  "static": true
+}
 }
