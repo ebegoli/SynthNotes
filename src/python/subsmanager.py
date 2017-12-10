@@ -41,5 +41,10 @@ class SubsManager(object):
         :return: dictionary of template variables and selected values
         """
         self._reset()
-        d = {s.name: s.chooseVal() for s in self.props}
+        d = {}
+        for p in self.props:
+            print(f"choosing value for {p.name}")
+            d[p.name] = p.chooseVal()
+            print(f"chose {p.name}: {d[p.name]}")
+        # d = {s.name: s.chooseVal() for s in self.props}
         return d
