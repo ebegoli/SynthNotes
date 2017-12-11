@@ -1,5 +1,4 @@
-from properties import PropertyFactory
-
+from notegenerator.properties import PropertyFactory
 
 class SubsManager(object):
     """ Helper class to manage our substitutions file. Able to open subs file
@@ -43,8 +42,6 @@ class SubsManager(object):
         self._reset()
         d = {}
         for p in self.props:
-            print(f"choosing value for {p.name}")
             d[p.name] = p.chooseVal()
-            print(f"chose {p.name}: {d[p.name]}")
         # d = {s.name: s.chooseVal() for s in self.props}
         return d
