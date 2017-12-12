@@ -4,8 +4,6 @@ from setuptools import setup, find_packages
 I'm certain this needs to be filled out more and have more fields added to setup.
 I'm not familiar with those so I added the bare bones info for now.
 Seems we need to include:
-    packages
-    install_requires
     entry_points:console_scripts
     
 Also need to decide on how we will do version schemes.  
