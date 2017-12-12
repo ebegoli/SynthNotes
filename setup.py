@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 """ TODO: 
 I'm certain this needs to be filled out more and have more fields added to setup.
@@ -22,7 +22,8 @@ setup(name="SynthNotes",
       python_requires=">=3",
       keywords="SOAP synthetic psychiatric notes",
       install_requires=[
-            "tqdm",
-            "faker",
-      ]
+          "tqdm",
+          "faker",
+      ],
+      packages=find_packages()
       )
