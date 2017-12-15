@@ -23,5 +23,9 @@ setup(name="SynthNotes",
           "tqdm",
           "faker",
       ],
-      packages=find_packages()
+      packages=find_packages(),
+      package_data={
+            'synthnotes.resources': ['*.json'],
+      },
+      test_suite="synthnotes.tests.tests"
       )

@@ -1,5 +1,5 @@
 {
-  "template": "test.base",
+  "template": "test.template",
   "mappings": "subs.json",
   "n_notes": 10,
   "prefix": "note_",

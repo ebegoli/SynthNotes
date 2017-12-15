@@ -1,4 +1,4 @@
-from notegenerator.properties import PropertyFactory
+from synthnotes.properties import PropertyFactory
 
 class SubsManager(object):
     """ Helper class to manage our substitutions file. Able to open subs file

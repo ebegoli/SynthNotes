@@ -12,7 +12,7 @@ from tqdm import trange
 import os
 from string import Template
 
-from notegenerator.properties import SubsManager
+from synthnotes.properties import SubsManager
 
 
 def main(template, mappings, n_notes=1, prefix='note_', extension='note', output_dir='./'):
