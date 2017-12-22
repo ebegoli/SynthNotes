@@ -1,31 +1,53 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""The setup script."""
+
 from setuptools import setup, find_packages
 
-""" TODO: 
-I'm certain this needs to be filled out more and have more fields added to setup.
-I'm not familiar with those so I added the bare bones info for now.
-Seems we need to include:
-    entry_points:console_scripts
-    
-Also need to decide on how we will do version schemes.  
+with open('README.rst') as readme_file:
+    readme = readme_file.read()
 
-For reference I was working on the Python packaging user guide:
-https://media.readthedocs.org/pdf/python-packaging-user-guide/latest/python-packaging-user-guide.pdf
-"""
-setup(name="SynthNotes",
-      version="0.0.1",
-      description="A package for generating synthetic psychiatric SOAP notes.",
-      url="https://github.com/ebegoli/SynthNotes",
-      author="UTK, ORNL",
-      license="MIT",
-      python_requires=">=3",
-      keywords="SOAP synthetic psychiatric notes",
-      install_requires=[
-          "tqdm",
-          "faker",
-      ],
-      packages=find_packages(),
-      package_data={
-            'synthnotes.resources': ['*.json'],
-      },
-      test_suite="synthnotes.tests.tests"
-      )
+with open('HISTORY.rst') as history_file:
+    history = history_file.read()
+
+requirements = [
+    # TODO: put package requirements here
+]
+
+setup_requirements = [
+    # TODO(sudarshan85): put setup requirements (distutils extensions, etc.) here
+]
+
+test_requirements = [
+    # TODO: put package test requirements here
+]
+
+setup(
+    name='synthnotes',
+    version='0.1.0',
+    description="A generator of synthetic psychiatric notes",
+    long_description=readme + '\n\n' + history,
+    author="Edmon Begoli",
+    author_email='begolie@ornl.gov',
+    url='https://github.com/ebegoli/SynthNotes',
+    packages=find_packages(include=['synthnotes']),
+    include_package_data=True,
+    install_requires=requirements,
+    license="MIT license",
+    zip_safe=False,
+    keywords='synthnotes',
+    classifiers=[
+        'Development Status :: 2 - Pre-Alpha',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Natural Language :: English',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+    ],
+    test_suite='tests',
+    tests_require=test_requirements,
+    setup_requires=setup_requirements,
+)
