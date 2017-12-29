@@ -50,4 +50,9 @@ if __name__ == '__main__':
     with open(args.config, 'r') as f:
         conf = json.load(f)
 
+    # Compute absolute path of config files
+    path_prefix = '/'.join(os.path.abspath(args.config).split('/')[:-1])
+    conf['mappings'] = path_prefix + '/' + conf['mappings']
+    conf['template'] = path_prefix + '/' + conf['template']
+    conf['output_dir'] = path_prefix + '/' + conf['output_dir']
     main(**conf)
