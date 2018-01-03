@@ -12,7 +12,8 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    # TODO: put package requirements here
+    "tqdm",
+    "faker",
 ]
 
 setup_requirements = [
@@ -32,7 +33,10 @@ setup(
     author_email='begolie@ornl.gov',
     url='https://github.com/ebegoli/SynthNotes',
     packages=find_packages(include=['synthnotes']),
-    include_package_data=True,
+    include_package_data=True,      # Tells setuptools to include all files in the MANIFEST
+    package_data={
+            'synthnotes.resources': ['*.json'],
+      },
     install_requires=requirements,
     license="MIT license",
     zip_safe=False,
