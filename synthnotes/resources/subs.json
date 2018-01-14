@@ -98,7 +98,34 @@
   "med_name": {
     "values": [
       "Prozac",
-      "Xanax"
+      "Xanax",
+      "Campral",
+      "Subutex",
+      "Suboxone",
+      "Clonidine",
+      "Disulfiram",
+      "Methadone",
+      "Nalmefene",
+      "Ondansetron",
+      "Bupropion",
+      "Cytisine",
+      "Evekeo",
+      "ADderal",
+      "Dexamfetamine",
+      "Ritalin",
+      "Focaline",
+      "Lexotanil",
+      "Librium",
+      "Frisium",
+      "Klonopin",
+      "Valium",
+      "Lyrica",
+      "Abilify",
+      "Saphris",
+      "Zyprexa",
+      "Cymbalta",
+      "Lunesta",
+      "Ambien"
     ]
   },
   "rx_adherence": {
