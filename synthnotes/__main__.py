@@ -31,6 +31,10 @@ def main(template, mappings, n_notes=1, prefix='note_', extension='note', output
     print("Generating {} synthetic notes".format(n_notes))
     for i in trange(n_notes):
         note = t.safe_substitute(sm.mappings)
+        # a total hack. some substitution values may also contain variables
+        # that need to be replaced.  This is the easiest thing to do for now
+        t2 = Template(note)
+        note = t2.safe_substitute(sm.mappings)
         out_file = prefix + str(i + 1) + '.' + extension
         out_path = os.path.join(output_dir, out_file)
         os.makedirs(os.path.dirname(out_path, ), exist_ok=True)
@@ -44,15 +48,19 @@ if __name__ == '__main__':
     help_str = """
         Path to json config file. Required fields: template, mappings
     """
-    parser.add_argument('-c', '--config', help=help_str, required=True)
+    parser.add_argument('-c', '--config', help=help_str,
+                        default="synthnotes/resources/conf.json",
+                        required=False)
     args = parser.parse_args()
 
     with open(args.config, 'r') as f:
         conf = json.load(f)
 
     # Compute absolute path of config files
-    path_prefix = '/'.join(os.path.abspath(args.config).split('/')[:-1])
-    conf['mappings'] = path_prefix + '/' + conf['mappings']
-    conf['template'] = path_prefix + '/' + conf['template']
-    conf['output_dir'] = path_prefix + '/' + conf['output_dir']
+
+    path_prefix = os.path.dirname(os.path.abspath(args.config))
+    print(path_prefix)
+    conf['mappings'] = os.path.join(path_prefix, conf['mappings'])
+    conf['template'] = os.path.join(path_prefix, conf['template'])
+    conf['output_dir'] = os.path.join(path_prefix, conf['output_dir'])
     main(**conf)

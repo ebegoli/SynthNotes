@@ -17,6 +17,22 @@
     ],
     "static": true
   },
+  "gender_pronoun": {
+    "values": {
+      "male": "he",
+      "female": "she"
+    },
+    "static": true,
+    "type": "gender"
+  },
+  "gender_poss": {
+    "values": {
+      "male": "his",
+      "female": "hers"
+    },
+    "static": true,
+    "type": "gender"
+  },
   "age": {
     "static": true,
     "high": 100,
@@ -425,5 +441,46 @@
       "low": 0,
       "type": "ordinal",
       "static": true
-  }
+  },
+  "history": {
+    "values": [
+      "alcohol abuse",
+      "drug abuse",
+      "sexual abuse",
+      "attention problems",
+      "problems sleeping"
+    ],
+    "static": false
+},
+  "stressor": {
+    "values": [
+      "$gender_pronoun lost $gender_poss job",
+      "$gender_pronoun recently was divorced from $gender_poss spouse",
+      "$gender_pronoun was laid off from $gender_poss job",
+      "$gender_poss spouse recently died",
+      "$gender_pronoun has been feeling lonely a-lot"
+
+    ]
+  },
+  "patient_statement": {
+    "values": [
+      "Patient stated \"I have been thinking about ending my life\"",
+      "Sister reports \"$gender_verb has been irritable\"",
+      "Patient stated \"I don't want to be here.\"",
+      "Patient stated \"this is pointless.\"",
+      "Sister reports \"$gender_pronoun has been sleeping for days.\"",
+      "Mother reports \"$gender_pronoun has been withdrawn.\"",
+      "Patient stated \"I've been thinking about killing myself.\"",
+      "Patient stated \"I am ready to work hard today.\"",
+      ""
+    ]
+  },
+   "cooperativeness": {
+     "values": [
+       "cooperative",
+       "indifferent",
+       "non-cooperative"
+     ],
+     "static": true
+   }
 }

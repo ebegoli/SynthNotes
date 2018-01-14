@@ -5,7 +5,7 @@ import faker
 class Property(object):
     def __init__(self, name, values=[], static=False, **kwargs):
         self.name = name
-        self.vals = values
+        self.values = values
         self.static = static
         self.hasChosen = False
         self.value = None
@@ -15,7 +15,7 @@ class Property(object):
 
     def chooseVal(self):
         if self.shouldChooseNewValue():
-            self.value = random.choice(self.vals)
+            self.value = random.choice(self.values)
             self.hasChosen = True
 
         return self.value
@@ -61,6 +61,16 @@ class PropDateTime(Property):
         return self.value
 
 
+class PropGender(Property):
+    def __init__(self, name, **kwargs):
+        super().__init__(name, **kwargs)
+
+    def chooseVal(self):
+        if self.shouldChooseNewValue():
+            self.gender = random.choice(['male', 'female'])
+        return self.values[self.gender]
+
+
 class PropertyFactory(object):
 
     @classmethod
@@ -71,5 +81,7 @@ class PropertyFactory(object):
             return PropOrdinal(name, **kwargs)
         elif propType == 'datetime':
             return PropDateTime(name, **kwargs)
+        elif propType == 'gender':
+            return PropGender(name, **kwargs)
         else:
             return Property(name, **kwargs)

@@ -1,23 +1,26 @@
-### TODO: replace this with variables
 Date and Time: $datetime
 ----------------------------------------------------------------------
 Subjective:
 --------------------------------------------------------------
-Since last visit patient states $gender is feeling better although
+Since last visit patient states $gender_pronoun is feeling better although
 still somewhat $mood, is $rx_adherence with $med_name as Rxed and denies side
-effects (progress since last visit with current issues). He continues to report
+effects (progress since last visit with current issues). $gender_pronoun continues to report
 early morning awakening. Appetite is improved and weight is $weight_fluc.
-Patient still reports some difficulty with concentrating on his work and feeling
+Patient still reports some difficulty with concentrating on $gender_poss work and feeling
 “exhausted” by the end of the day. ROS is otherwise negative (Review of systems
 for both nonspecific and specific symptoms which may be related to depression).
 Patient denies currently using substances (historical information which may be
-relevant to symptoms and differential diagnosis). Symptoms:
+relevant to symptoms and differential diagnosis).
+
+Patient reports stress because $stressor.
+$patient_statement
+
+Symptoms:
 
 Collateral information stresses:
 
 Staff observations: Patient is experiencing $agitation agitation, a sleep is
-$sleep_log, patient is ${cooperation} cooperative, and the behavior is
-$behavior.
+$sleep_log, patient is $cooperative to treatment, and the behavior is $behavior.
 
 Medications:
 
@@ -61,6 +64,7 @@ Reports $thought_illusions illusions.  Their suicide thoughts are observed to be
 $thought_suicide and homicide thoughts are $thoughts_homicide.
 
 
+
 Laboratory and Other Tests:
 
 -----------------------------------------------------------------------
@@ -83,5 +87,7 @@ Diagnostic: $diagnostic
 Specific Treatment: $specific_treatment
 General Treatment: $general_treatment
 Disposition: $disposition
+
+
 
  Name: Title: Signature:

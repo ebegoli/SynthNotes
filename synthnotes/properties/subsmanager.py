@@ -43,5 +43,4 @@ class SubsManager(object):
         d = {}
         for p in self.props:
             d[p.name] = p.chooseVal()
-        # d = {s.name: s.chooseVal() for s in self.props}
         return d
