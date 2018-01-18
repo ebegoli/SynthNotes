@@ -35,7 +35,7 @@ setup(
     packages=find_packages(include=['synthnotes']),
     include_package_data=True,      # Tells setuptools to include all files in the MANIFEST
     package_data={
-            'synthnotes.resources': ['*.json'],
+            'synthnotes.resources': ['*.json', "*.template"],
       },
     install_requires=requirements,
     license="MIT license",
