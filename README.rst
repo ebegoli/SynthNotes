@@ -1,3 +1,5 @@
+.. highlight:: shell
+
 SynthNotes
 ===============
 A generator of synthetic psychiatric notes
@@ -26,4 +28,16 @@ Algorithm
 =====================
 Running the generator
 =====================
+1. Clone the repo to your local machine.
+2. Install the package with ::
+
+    $ python setup.py develop
+
+3. Modify the settings in the conf.json file file found at synthnotes/resources/conf.json or create your own config file
+and pass the file path on the command line through the -c or --config
+4. Run the generator with ::
+
+    $ python synthnotes --config path/to/your/config/file
+
+
 
