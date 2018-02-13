@@ -14,6 +14,8 @@ with open('HISTORY.rst') as history_file:
 requirements = [
     "tqdm",
     "faker",
+    "numpy",
+    "pandas",
 ]
 
 setup_requirements = [

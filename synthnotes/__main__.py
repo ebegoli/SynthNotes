@@ -10,9 +10,8 @@ import json
 import argparse
 from tqdm import trange
 import os
-from string import Template
 
-from synthnotes.generator import Generator
+from synthnotes.generators.notegenerator import NoteGenerator
 
 
 def main(template, mappings, n_notes=1, prefix='note_', extension='note', output_dir='./'):
@@ -24,7 +23,7 @@ def main(template, mappings, n_notes=1, prefix='note_', extension='note', output
 
     # TODO: Error and format checking on input base
     # create a template from the base
-    gen = Generator(template, mappings)
+    gen = NoteGenerator(template, mappings)
     print("Generating {} synthetic notes".format(n_notes))
     for i in trange(n_notes):
         note = gen.generate()
