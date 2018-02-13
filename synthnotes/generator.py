@@ -24,6 +24,4 @@ class Generator(object):
         self.sm = SubsManager(self.subs)
 
     def generate(self):
-        # create a dictionary for subs by randomly selecting values from the list
-        # d = {k: random.choice(v) for k, v in self.subs.items()}
         return self.t.safe_substitute(self.sm.mappings)

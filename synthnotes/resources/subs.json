@@ -481,12 +481,20 @@
 },
   "stressor": {
     "values": [
-      "$gender_pronoun lost $gender_poss job",
+      "$gender_pronoun lost $gender_poss job recently",
       "$gender_pronoun recently was divorced from $gender_poss spouse",
       "$gender_pronoun was laid off from $gender_poss job",
       "$gender_poss spouse recently died",
-      "$gender_pronoun has been feeling lonely a-lot"
+      "$gender_pronoun has been feeling lonely a-lot",
+      "Patient reports they have been suffering from insomnia",
+      "Patient says they are struggling financially with debt and are unemployed",
+      "$gender_pronoun has been upset a-lot from a recent breakup with their partner",
+      "Patient reports that they have been stressed from struggling to make credit card payments",
+      "They have been feeling hopeless after the recent death of their child",
+      "Patient reports feeling unusually fearful",
+      "Patients states that they have been feeling frequently agitated",
 
+      ""
     ]
   },
   "patient_statement": {

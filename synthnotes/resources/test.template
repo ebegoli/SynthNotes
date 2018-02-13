@@ -12,8 +12,8 @@ for both nonspecific and specific symptoms which may be related to depression).
 Patient denies currently using substances (historical information which may be
 relevant to symptoms and differential diagnosis).
 
-Patient reports stress because $stressor.
-$patient_statement
+$stressor.
+$patient_statement.
 
 Symptoms:
 
