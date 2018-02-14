@@ -36,7 +36,7 @@ class NoteGenerator(object):
         if rand_len == 0:
             return ''
         note_len = len(note)
-        print(type(note))
+        # print(type(note))
         if note_len == rand_len:
             return note
         elif note_len > rand_len:
