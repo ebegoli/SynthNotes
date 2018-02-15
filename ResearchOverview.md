@@ -59,16 +59,10 @@ Given that we are able to successfully create sufficiently realistic notes throu
 
 ## Phase III
 ### Data Based Methods
-1. Learning templates from a corpus of text
+#### 1. Learning templates from a corpus of text
 
-2. Aligning text with knowledge triples
-3.  Concept-to-text generation 
-
-
-Random selection of hard-coded values
-
-Generation from literature-informed models 
-Phase II - Inferred and Generative Models
+#### 2. Aligning text with knowledge base
+#### 3. Concept-to-text generation 
 
 # Study
 
