@@ -10,8 +10,8 @@ from synthnotes.generators import LengthGenerator
 class NoteGenerator(object):
 
     def __init__(self,
-                 base_file=resource_filename(__name__, 'resources/test.template'),
-                 subs_file=resource_filename(__name__, 'resources/subs.json'),
+                 base_file=resource_filename('synthnotes', 'resources/test.template'),
+                 subs_file=resource_filename('synthnotes', 'resources/subs.json'),
                  ):
         # read the files, the subs file is read using json method
         with open(base_file, 'r') as fh:
@@ -36,7 +36,7 @@ class NoteGenerator(object):
         if rand_len == 0:
             return ''
         note_len = len(note)
-        print(type(note))
+        # print(type(note))
         if note_len == rand_len:
             return note
         elif note_len > rand_len:
