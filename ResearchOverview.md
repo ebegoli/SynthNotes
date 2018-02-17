@@ -58,7 +58,7 @@ Given that we are able to successfully create sufficiently realistic notes throu
 
 
 ## Phase III
-### Data Based Methods
+### Learning from Data-based Methods
 #### 1. Learning templates from a corpus of text
 
 #### 2. Aligning text with knowledge base
