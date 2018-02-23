@@ -34,14 +34,14 @@ setup(
     author="Edmon Begoli",
     author_email='begolie@ornl.gov',
     url='https://github.com/ebegoli/SynthNotes',
-    packages=find_packages(include=['synthnotes']),
+    packages=find_packages(exclude=['synthnotes.resources']),
     include_package_data=True,      # Tells setuptools to include all files in the MANIFEST
     package_data={
-            'synthnotes.resources': ['*.json', "*.template"],
+            'synthnotes.resources': ['*.json', "*.template", "*.csv"],
       },
+    zip_safe=False,
     install_requires=requirements,
     license="MIT license",
-    zip_safe=False,
     keywords='synthnotes',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',

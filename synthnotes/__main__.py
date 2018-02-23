@@ -11,6 +11,8 @@ import argparse
 from tqdm import trange
 import os
 
+from pkg_resources import resource_filename
+
 from synthnotes.generators.notegenerator import NoteGenerator
 
 
@@ -42,7 +44,8 @@ if __name__ == '__main__':
         Path to json config file. Required fields: template, mappings
     """
     parser.add_argument('-c', '--config', help=help_str,
-                        default="synthnotes/resources/conf.json",
+                        default=resource_filename('synthnotes.resources',
+                                                  'conf.json'),
                         required=False)
     args = parser.parse_args()
 
