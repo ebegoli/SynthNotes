@@ -6,7 +6,7 @@
 
 # Motivation for Research
 
-The incidence of suicide in American service members represents a major health crisis.  Precision medicine and machine learning offer recent breakthroughs and advances that could be used to better understand and mitigate this crisis.  However, given the sensitive nature of medical records, and particularly that of physicatric patient information, there is a major bottleneck in the available data that be utilized to make progress in the task of suicide detection and prevention.  Our recent introduces a system, SynthNotes, which aims to provide sufficiently realistic synthetic psychiatric notes that can be freely shared with the research community without compromising patient confidentiality.  
+The incidence of suicide in American service members represents a major health crisis.  Precision medicine and machine learning offer recent breakthroughs and advances that could be used to better understand and mitigate this crisis.  However, given the sensitive nature of medical records, and particularly that of physicatric patient information, there is a major bottleneck in the available data that be utilized to make progress in the task of suicide detection and prevention.  Here we introduce a system, SynthNotes, which aims to provide sufficiently realistic synthetic psychiatric notes that can be freely shared with the research community without compromising patient confidentiality.  
 
 # Related Work
 
@@ -41,24 +41,24 @@ A later step, following the initial construction of key disease profiles, would 
 
 #### Physician Modeling
 
-Physician modeling refers creating synthetic clinical notes that would be particular to the style of a physician.  As mentioned above, this could contain commono misspellings or usual shorthand or abbreviations that an physician may use.  Given time and a determination of sufficient research value, it could be beneficial to pair semantic meaning with syntactic structure of sentences and explore whether we can find distinct physician groups.  Other language modeling techniques are certainly available such as n-gram modeling.  
+Physician modeling refers creating synthetic clinical notes that would be particular to the style of a physician.  As mentioned above, this could contain common misspellings or usual shorthand or abbreviations that a physician may use.  Given time and a determination of sufficient research value, it could be beneficial to pair semantic meaning with syntactic structure of sentences and explore whether we can find distinct physician groups.  Other language modeling techniques are certainly available such as n-gram modeling.  
 
 
 #### 2. Classic Sentence Generation
 
-The previously discussed profiles do not discontinue the value of our current template design structure but rather serve to augment it's informational load and logical coherence.  This in turn helps with search methods, and is a useful tool for benchmarking and testing our text processing infrastructure.  However, it is a brittle system that involves a great deal of time in crafting sentences.  The next step our limited data access is to create a sentence generation system.  There is a great deal of literature on this process and we have many options.  However, there is no opensource implementation that is also domain independent.  
+The previously discussed profiles do not discount the value of our current template design structure but rather serve to augment it's informational load and logical coherence.  This in turn helps with search methods, and is a useful tool for benchmarking and testing our text processing infrastructure.  However, it is a brittle system that involves a great deal of time in crafting sentences.  The next step, given our limited data access is to create a sentence generation system.  There is a great deal of literature on this process and we have many options.  However, there is no opensource implementation that is also domain independent.  
 
 Classic sentence generation has typically been described broadly as a three stage pipeline: document planning, microplanning, and surface realization (the actual writing of sentence structures that are present in the final document).  For the beginning of our second phase of SynthNotes, we will be focusing on surface realization from a grammar perspective.  That is, using formal grammars to construct a possible set of legal sentences.  There are of course many different grammars to choose from, but this decision has not yet been set.  
 
 Provided there is a grammar in place, the framework for constructing sentences will involve sets of "messages" that can be constructed with appropriate arguments.  Each message will be given a set of arguments and contain the grammatical structure to write a set of different possible sentences.  For example, we could have a message like PreviousSubstanceAbuse which when given a patient profile will construct a grammatically correct sentence that relates to a patients history of substance abuse.  The most notable opensource tool for surface realization is SimpleNLG[^simplenlg], a Java based tool.  Our current software is in Python, but there are options for integrating the two.  Or, a determination could be made that Java is more suitable because it seems the surface generation of text will consume a large portion of the library's code content.  
 
-Another tool that has been discovered in the last week is the Grammatical Framework (GF)[^gf]. GF is a functional type based language, based on Haskell, that appears to provide tools for sentence construction from a higher level of abstraction, notably the semantic level.  It seems that in some way it is paired with FrameNet[^framenet], a semantically annotated dataset, and could possibly lead to a leaner more concise codebase.  However, the learning curve for this tool seems steep and is an important consideration.  
+Another tool that has been discovered in the last week is the Grammatical Framework (GF)[^gf]. GF is a functional type based language, based on Haskell, that appears to provide tools for sentence construction from a higher level of abstraction, notably the semantic level.  It seems that in some way it is paired with FrameNet[^framenet], a semantically annotated dataset, and could possibly lead to a leaner and more concise codebase.  However, the learning curve for this tool seems steep and is an important consideration.  
 
 Given that we are able to successfully create sufficiently realistic notes through the modeling and NLG methods outlined above, we will need to turn to document planning.  This is an area that needs to be explored more by our group.  However, the most common and aggreed upon language structuring theoretical foundation appears to be found in Rhetorical Structure Theory (RST)[^rst1], [^rst2].  This is a natural starting point.  There are other issue related to the second stage of the NLG pipeline, microplanning, that contribute to textual fluency, but at this point are of a smaller concern.  This is especially true if we are assuming search methods that are restricted to the word or phrase level.  
 
 
 ## Phase III
-### Data Based Methods
+### Learning from Data-based Methods
 #### 1. Learning templates from a corpus of text
 
 #### 2. Aligning text with knowledge base
