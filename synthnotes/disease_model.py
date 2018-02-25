@@ -1,0 +1,1 @@
+# Modelling general characteristics of thr disease such as stage, manifestation, severity, etc  
