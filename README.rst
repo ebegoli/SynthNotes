@@ -4,7 +4,7 @@ SynthNotes
 ===============
 A generator of synthetic psychiatric notes.
 
-**NOTE: We have temporarily moved the project development to ORNL-internal Gitlab repository while we are in the process of developing initial publications. Once we have Phases I and II implemented, we will release the content back here, and under the same license.**
+**NOTE: We have temporarily moved the project development to ORNL-internal Gitlab repository while we are in the process of developing initial publications. Once we have Phases I and II implemented (Spring 2018), we will release the content back here, and under the same license.**
 
 ======
 About
