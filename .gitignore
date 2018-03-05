@@ -61,5 +61,5 @@ __pycache__/
 *.egg-info
 .idea/*
 
-*.ipynb
+
 docs/_build/
