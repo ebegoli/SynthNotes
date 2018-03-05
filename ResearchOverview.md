@@ -12,6 +12,69 @@ The incidence of suicide in American service members represents a major health c
 
 <!-- This will largely  depend upon the final outcome of our work with regards to methods.  There are of course generation systems that have been used in production.  I'll assemble all those references and discuss here later. --> 
 
+### Synthea
+
+
+#### Architecture
+General module framework: A collection of independent(? do we have co-occurrence rates for disease?) modules that function as a state machine.  Probabilities for transitions between states come from (? what? check references in synthea).  Also, I don't think the patient modeling itself is the same kind of state graph.  No need for transitions.  However, some demographic information is injected into other modules, like homelessness, alcoholism, etc.  
+
+
+#### What it does
+
+Synthea is a tool developed by the Mitre Corporation for developing full synthetic populations of patients.  Their software relies on census data, medical incidence rates, domain experted crafted care plans (Need to figure out how this is created).  Census data at the (county or city?) level provides probability distributed for demographic information ranging from gender, socioeconomic status, education levels, alcoholism, sexual orientation etc.  We use this rich source of quantitative information to increase the realistic patient models behind our note generation.
+
+Paragraph on disease profiling....
+I think this mostly relies on medical incidence rates in a given demographic region, county or city.  Care plans are created.  Need to learn where the probabilities for transitions in the state graphs come from.  This is likely in the module files (src/main/java/resources/modules)
+
+#### How Synthea fits into our work
+Rely on this for initial demographic information about patients that we can use to enhance our Phase I notes.  Some existing modules and demographic information is particularly useful.  Modules that we can use now: 
+
+    1. Medication:
+      * Pain relievers: Includes moderate and strong opiods and otc
+    2. Injuries
+    3. Cancer modules:
+        * colorectal cancer
+        * lung cancer
+    4. Alcohol and substance abuse:
+        * Discrete True False for alcoholism with transitions to recovery possible
+        * Opiod addictions
+    5. Self harm:
+        * Distributions by gender, and refined by age group
+        * Fatal and non-fatal attempts with simple care plans
+            * Non-fatal methods:
+                * poisoning (overdose), cutting, suffocation 
+            * Fatal methods:
+                * Firearm, suffocation, poisoning
+                * Other - vehicular, drowning, falls, etc
+        Note: While fatal and non-fatal attempts have different distributions based on gender, the methods do not.  A simple addition for us is to split these further to accomodate for the differences between men & women.  (Needs citation)
+        
+    6. Injuries:
+        We know that patients at high risk for suicide are also at risk for non-suicidal injuries.  Synthea supported injuries are
+        * Gunshot
+        * spinal
+        * concussion
+        * whiplash
+        * bone fractures
+        * burns
+        * laceration (with body location information)
+        * sprains
+        * knee injuries (torn ligaments)
+        * shoulder injuries (torn rotator cuffs)
+        
+        Injuries include pain medication (opiates and otc) as part of care plans). We can integrate medical injury history into military service narratives.
+        
+    7. Homelessness:
+        National numbers from HUD. Synthea captures temporary and chronic states of homelessness.  Also captures visiting homeless shelter, and some social history during those events.  Includes HIV status and current opiod abuse.  I need to figure out where synthea writes this information.  Looks like information gathering event goes into "procedure.csv", while information gained is in "observations.csv".  Visiting a homeless shelter is in "encounter.csv"
+        
+        
+  Our patient modeling:
+    Extend with fields:
+        * Firearm ownership (We can get this into the Synthea demographic model easily I think. Maybe not at a finegrained city level, but certainly nationally.  Can also split firearm ownership by gender, and veteran or non-veteran).
+
+##### Patient Modeling
+
+
+
 # Approach
 
 ## Phase I - Templating
