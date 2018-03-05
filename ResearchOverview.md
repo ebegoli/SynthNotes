@@ -1,6 +1,6 @@
 # SythNotes - A Method for Generation of Mental Health Notes
 
-### Edmon Begoli, Kris Brown, Everett Rush
+### Edmon Begoli, Kris Brown
 
 # Introduction
 
