@@ -6,8 +6,8 @@ import numpy as np
 
 class LengthGenerator(object):
     def __init__(self,
-                 length_file=resource_filename(__name__,
-                                               'resources/note_lengths.csv')):
+                 length_file=resource_filename('synthnotes.resources',
+                                               'note_lengths.csv')):
         # print(length_file)
         df = pd.read_csv(length_file)
         notes_count = df['count'].sum()
