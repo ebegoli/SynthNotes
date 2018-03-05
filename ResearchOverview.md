@@ -14,20 +14,19 @@ The incidence of suicide in American service members represents a major health c
 
 ### Synthea
 
+Synthea is a tool developed by the Mitre Corporation for developing full synthetic populations of patients.  Their software relies on census data, medical incidence rates, domain experted crafted care plans (Need to figure out how this is created).  Census data at the (county or city?) level provides probability distributed for demographic information ranging from gender, socioeconomic status, education levels, alcoholism, sexual orientation etc.  We use this rich source of quantitative information to increase the realistic patient models behind our note generation.
 
-#### Architecture
+
 General module framework: A collection of independent(? do we have co-occurrence rates for disease?) modules that function as a state machine.  Probabilities for transitions between states come from (? what? check references in synthea).  Also, I don't think the patient modeling itself is the same kind of state graph.  No need for transitions.  However, some demographic information is injected into other modules, like homelessness, alcoholism, etc.  
 
 
-#### What it does
 
-Synthea is a tool developed by the Mitre Corporation for developing full synthetic populations of patients.  Their software relies on census data, medical incidence rates, domain experted crafted care plans (Need to figure out how this is created).  Census data at the (county or city?) level provides probability distributed for demographic information ranging from gender, socioeconomic status, education levels, alcoholism, sexual orientation etc.  We use this rich source of quantitative information to increase the realistic patient models behind our note generation.
 
 Paragraph on disease profiling....
-I think this mostly relies on medical incidence rates in a given demographic region, county or city.  Care plans are created.  Need to learn where the probabilities for transitions in the state graphs come from.  This is likely in the module files (src/main/java/resources/modules)
+I think this mostly relies on medical incidence rates in a given demographic region, county or city.  Care plans are created.  Need to learn where the probabilities for transitions in the state graphs come from.  This is likely in the module files (src/main/resources/modules)
 
 #### How Synthea fits into our work
-Rely on this for initial demographic information about patients that we can use to enhance our Phase I notes.  Some existing modules and demographic information is particularly useful.  Modules that we can use now: 
+Rely on Synthea for initial demographic information about patients that we can use to enhance our Phase I notes.  Some existing modules and demographic information is particularly useful.  Modules that we can use now: 
 
     1. Medication:
       * Pain relievers: Includes moderate and strong opiods and otc
@@ -64,8 +63,11 @@ Rely on this for initial demographic information about patients that we can use 
         Injuries include pain medication (opiates and otc) as part of care plans). We can integrate medical injury history into military service narratives.
         
     7. Homelessness:
-        National numbers from HUD. Synthea captures temporary and chronic states of homelessness.  Also captures visiting homeless shelter, and some social history during those events.  Includes HIV status and current opiod abuse.  I need to figure out where synthea writes this information.  Looks like information gathering event goes into "procedure.csv", while information gained is in "observations.csv".  Visiting a homeless shelter is in "encounter.csv"
-        
+        National numbers from HUD. Synthea captures temporary and chronic states of homelessness.  Also captures visiting homeless shelter, and some social history during those events.  Includes HIV status and current opiod abuse.  I need to figure out where synthea writes this information.  Looks like information gathering event goes into "procedure.csv", while information gained is in "observations.csv".  Visiting a homeless shelter is in "encounter.csv"    
+    8. Fibromyalgia
+    9. Arthritis / Joint replacement
+        We don't have mobility information related to these types of diseases and treatments.  This is another area for enhancement as I think the literature points to mobility as a factor in suicide risk?
+    10. Pregnancy: This is a large module but I'm not sure if it is relevant at the moment.  Does include information regarding miscarriage and abortion rates by age group.  
         
   Our patient modeling:
     Extend with fields:
