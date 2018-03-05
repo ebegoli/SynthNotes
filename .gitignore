@@ -62,3 +62,4 @@ __pycache__/
 .idea/*
 
 *.ipynb
+docs/_build/
