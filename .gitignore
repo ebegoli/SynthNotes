@@ -60,6 +60,6 @@ __pycache__/
 
 *.egg-info
 .idea/*
-
+.ipynb_checkpoints/
 
 docs/_build/
