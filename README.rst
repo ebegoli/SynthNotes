@@ -34,6 +34,9 @@ Running the generator
 2. Install the package with ::
 
     $ python setup.py develop
+    
+or ::
+    $ pip install -e .
 
 3. Modify the settings in the conf.json file file found at synthnotes/resources/conf.json or create your own config file
 and pass the file path on the command line through the -c or --config
