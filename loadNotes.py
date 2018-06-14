@@ -19,8 +19,8 @@ def main():
     for row in results:
         encounter_id = row[0]
         person_id = row[1]
-        start = row[5]
-        stop = row[6]
+        start = row[2]
+        stop = row[3]
 
         note = generator.generate()
         cur.execute("""
