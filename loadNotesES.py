@@ -2,6 +2,7 @@ from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
 from elasticsearch_dsl import connections, Text, DocType, Date, Keyword, Integer
 import psycopg2 as psy
+from tqdm import tqdm
 
 class Note(DocType):
 
@@ -26,7 +27,7 @@ def _bulk(doc):
 
 
 def main():
-    connections.create_connection()
+    connections.create_connection(hosts=['172.22.8.180:9200'])
     Note.init()
 
     def note_stream():
@@ -39,7 +40,7 @@ def main():
                     FROM notes;
         """)
 
-        for (i, eid, pid, start, stop, text) in cur:
+        for (i, eid, pid, start, stop, text) in tqdm(cur):
             yield Note(encounter_id=eid, person_id=pid, start=start,
                      stop=stop, text=text, meta={'id': i})
 

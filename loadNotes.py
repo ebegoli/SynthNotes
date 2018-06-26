@@ -1,12 +1,12 @@
 from synthnotes.generators import NoteGenerator
 import psycopg2 as psy
-
+from tqdm import tqdm
 
 def main():
 
     generator = NoteGenerator()
 
-    params = {'database': 'synthea', 'user': 'postgres', 'host': '172.22.8.180'}
+    params = {'database': 'synthea', 'user': 'postgres', 'host': '172.22.10.147'}
     conn = psy.connect(**params)
 
     cur = conn.cursor("reader")
@@ -21,12 +21,12 @@ def main():
                 """)
 
     count = 0
-    for row in cur:
+    for row in tqdm(cur):
         encounter_id = row[0]
         person_id = row[1]
         start = row[2]
         stop = row[3]
-
+        
         note = generator.generate()
         curWrite.execute("""
             INSERT into notes(encounter_id, person_id, note, start, stop)
