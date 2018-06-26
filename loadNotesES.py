@@ -30,7 +30,7 @@ def main():
     Note.init()
 
     def note_stream():
-        params = {'database': 'synthea', 'user': 'postgres', 'host': '127.0.0.1'}
+        params = {'database': 'synthea', 'user': 'postgres', 'host': '172.22.10.147'}
         conn = psy.connect(**params)
         cur = conn.cursor()
 
