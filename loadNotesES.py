@@ -2,7 +2,9 @@ from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
 from elasticsearch_dsl import connections, Text, DocType, Date, Keyword, Integer
 import psycopg2 as psy
+<<<<<<< HEAD
 from tqdm import tqdm
+
 
 class Note(DocType):
 

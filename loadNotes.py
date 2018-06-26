@@ -6,7 +6,7 @@ def main():
 
     generator = NoteGenerator()
 
-    params = {'database': 'synthea', 'user': 'postgres', 'host': '172.22.10.147'}
+    params = {'database': 'synthea', 'user': 'postgres', 'host': '172.22.8.180'}
     conn = psy.connect(**params)
 
     cur = conn.cursor("reader")
