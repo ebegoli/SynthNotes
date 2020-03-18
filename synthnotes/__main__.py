@@ -1,62 +1,75 @@
-#!/usr/bin/env python
-"""
-    Script to generate sythetic pyschiatric notes.
-    The base file contains the basic format of the notes with random value
-    place holder names having a dollar sign in front of them.
-    The subs file is a json file whose keys are the place holder names and
-    values are a list of possible values that can be taken.
-"""
-import json
-import argparse
-from tqdm import trange
+import click
 import os
+import pandas as pd
 
-from pkg_resources import resource_filename
+from synthnotes.xml_processing import CtakesXmlParser
+from synthnotes.preprocessor import Preprocessor
+from synthnotes.clustering import Clusterer
+from synthnotes.generator import Generator
 
-from synthnotes.generators.notegenerator import NoteGenerator
+import pyarrow as pa
+import pyarrow.parquet as pq
 
 
-def main(template, mappings, n_notes=1, prefix='note_', extension='note', output_dir='./'):
-    # read the files, the subs file is read using json method
-    with open(template, 'r') as fh:
-        base = fh.read()
-    with open(mappings, 'r') as fh:
-        subs = json.load(fh)
+@click.group()
+def cli():
+    pass
 
-    # TODO: Error and format checking on input base
-    # create a template from the base
-    gen = NoteGenerator(template, mappings)
-    print("Generating {} synthetic notes".format(n_notes))
-    for i in trange(n_notes):
-        note = gen.generate()
+@cli.command()
+@click.option('--xml-dir', default='data/xml_files', help='File path to directory of xml files')
+@click.option('--output', default='data/xml_extracted', help='File path to storage extracted xml data parquet files')
+@click.option('--fs', default='local', type=click.Choice(['local', 'hdfs']), help='Use local or hdfs storage' )
+def parse(xml_dir, output, fs):
+    parser = CtakesXmlParser()
+    files = get_files(fs, xml_dir)
+    parsed = []
+    for f in files:
+        xml_result = parser.parse(f)
+        parsed.append(xml_result)
 
-        out_file = prefix + str(i + 1) + '.' + extension
-        out_path = os.path.join(output_dir, out_file)
-        os.makedirs(os.path.dirname(out_path, ), exist_ok=True)
+    for p in parsed:
+        for key, val in p.items():
+            feature_df = pd.DataFrame(list(val))  
+            if feature_df.shape[0] > 0:
+                table = pa.Table.from_pandas(feature_df)                
+                pq.write_to_dataset(table, output + f'/{key}',
+                                    filesystem=None)
 
-        with open(out_path, 'w') as fh:
-            fh.write(note)
+
+@cli.command()
+@click.option('--pq_files', default='data/xml_extracted', help='File path to directory of extracted xml data parquet files')
+@click.option('--output', default='data/processed_dfs', help='File path to storage for preprocessed dataframes to be stored for clustering.  This directory should exist.')
+@click.option('--mimic_notes', default='data/note-events.parquet', help='File path to mimic notes in parquet file')
+def preprocess(pq_files, output, mimic_notes):
+    p = Preprocessor(pq_files, output, mimic_notes)
+    p.preprocess()
+
+@cli.command()
+@click.option('--pq_files', default='data/processed_dfs', help='File path to processed xml data parquet files')
+@click.option('--output', default='data/clustering', help='File path to storage for clustering data')
+def cluster(pq_files, output):
+    clusterer = Clusterer(pq_files, output)
+    clusterer.cluster()
+
+@cli.command()
+@click.option('-n', default=1, help='Number of notes to generate')
+@click.option('--pq_files', default='data/clustering', help='File path to clustering data')
+@click.option('--output', default='data/generated_notes', help='File path to output generated notes')
+def generate(n, pq_files, output):
+    gen = Generator(pq_files, output)
+    gen.generate(n_notes=n)
+
+
+def get_files(fs, dirpath):
+    abs_path = os.path.abspath(dirpath)
+    result = []
+    if fs == 'local':
+        files = os.listdir(abs_path)
+    for f in files:
+        result.append(os.path.join(abs_path, f) )
+
+    return result
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    help_str = """
-        Path to json config file. Required fields: template, mappings
-    """
-    parser.add_argument('-c', '--config', help=help_str,
-                        default=resource_filename('synthnotes.resources',
-                                                  'conf.json'),
-                        required=False)
-    args = parser.parse_args()
-
-    with open(args.config, 'r') as f:
-        conf = json.load(f)
-
-    # Compute absolute path of config files
-
-    path_prefix = os.path.dirname(os.path.abspath(args.config))
-    conf['mappings'] = os.path.join(path_prefix, conf['mappings'])
-    conf['template'] = os.path.join(path_prefix, conf['template'])
-    conf['output_dir'] = os.path.join(path_prefix, conf['output_dir'])
-
-    main(**conf)
+    cli()

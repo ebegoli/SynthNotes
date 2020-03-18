@@ -1,0 +1,43 @@
+- hosts: localhost
+  tasks:
+  - name: Creates openstack uber-server server 
+    include_role: 
+      name: openstack
+      tasks_from: create-server.yml
+    vars: 
+      server_name: uber-server
+      flavor: "m1.medium"
+      image: "CADES_CentOS-7.4_v20180123_1"
+      boot_from_volume: yes 
+      volume_size: 12 
+  - meta: refresh_inventory
+  - wait_for:
+      host: "{{ hostvars['uber-server']['ansible_ssh_host'] }}"
+      port: 22
+      state: started
+      connect_timeout: 5
+      timeout: 30 
+
+- hosts: uber-server 
+  tasks:
+  - include_role:
+      name: common 
+      tasks_from: uber-server-common.yml
+
+- hosts: localhost
+  tasks:
+  - name: Creates openstack uber-server server snapshot 
+    include_role: 
+      name: openstack
+      tasks_from: snapshot-volume.yml
+    vars: 
+      server_name: uber-server
+      snapshot_name: uber-server-snapshot
+      description: "An server snapshot of the uber-server server"
+  - name: Deletes the openstack uber-server server
+    include_role:
+      name: openstack
+      tasks_from: delete-server.yml
+    vars:
+      server_name: uber-server
+  

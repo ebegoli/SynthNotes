@@ -1,0 +1,21 @@
+---
+- name: Downloads a file to the ansible controller if it already doesn't exist
+  block:
+
+  - stat:
+      path: "files/{{ filename }}"
+    register: existing_file
+
+  - set_fact:
+      force_new_download: "{{ existing_file.stat.md5 != checksum_value }}"
+    when: existing_file.stat.exists
+
+  - get_url:
+      url: "{{ src_url }}"
+      dest: "{{ tgt_dest }}"
+      checksum: "{{ checksum_method }}:{{ checksum_value }}"
+      force: "{{ force_new_download | default ('false') }}"
+
+  delegate_to: localhost
+  run_once: true
+  become: no

@@ -1,0 +1,5 @@
+- hosts: uber-server 
+  tasks:
+  - include_role:
+      name: common 
+      tasks_from: uber-server-common.yml

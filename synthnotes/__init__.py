@@ -1,3 +1,5 @@
+# from xml_processing import CtakesXmlParser
+
 # -*- coding: utf-8 -*-
 
 """Top-level package for SynthNotes."""

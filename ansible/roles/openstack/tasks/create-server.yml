@@ -1,0 +1,25 @@
+---
+- block:
+  
+  - name: Creates a server {{ server_name }} from image type {{ image }}
+    os_server:
+      state: present
+      wait: yes
+      name: "{{ server_name }}"
+      auth: "{{ openstack_auth }}"
+      image: "{{ image }}" 
+      flavor: "{{ flavor }}"
+      boot_from_volume: "{{ boot_from_volume }}" 
+      volume_size: "{{ volume_size }}"
+      terminate_volume: yes
+      network: or_provider_general_intnetwork1
+      key_name: "{{ openstack_key_name }}"
+      
+  - name: Restarts the server instance {{ server_name }} 
+    os_server_action:
+      server: "{{ server_name }}"
+      action: start 
+      auth: "{{ openstack_auth }}"
+
+  delegate_to: localhost
+  run_once: yes

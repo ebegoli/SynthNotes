@@ -1,0 +1,36 @@
+---
+- name: Creates users
+  block:
+  - name: Checks for existence of user HDFS home directory
+    command: "{{ hadoop_prefix }}/bin/hadoop fs -ls /user/{{ item.user }}" 
+    with_items: "{{ new_hdfs_users }}"
+    check_mode: no 
+    register: user_exists
+    ignore_errors: yes 
+
+  - name: Creates hdfs user directories if not present 
+    command: "{{ hadoop_prefix }}/bin/hadoop fs -mkdir -p /user/{{ item.item.user }}" 
+    when: item.rc != 0
+    with_items: "{{ user_exists.results }}" 
+
+  - name: Gives hdfs users their own home directories  
+    command: "{{ hadoop_prefix }}/bin/hadoop fs -chown -R {{ item.item.user }}:{{ item.item.group }} /user/{{ item.item.user }}" 
+    when: item.rc != 0
+    with_items: "{{ user_exists.results }}" 
+
+  - name: Sets hdfs user space quotas  
+    command: "{{ hadoop_prefix }}/bin/hdfs dfsadmin -setSpaceQuota {{ item.item.quota }} /user/{{ item.item.user }}" 
+    when: item.rc != 0 and False
+    with_items: "{{ user_exists.results }}"
+
+  - name: Refresh hdfs user-to-group mappings
+    command: "{{ hadoop_prefix }}/bin/hdfs dfsadmin -refreshUserToGroupsMappings"
+    when: user_exists.results|sum(attribute='rc') > 0
+  environment:
+    JAVA_HOME: "{{ java_home }}"
+    HADOOP_PREFIX: "{{ hadoop_prefix }}"
+    HADOOP_YARN_HOME: "{{ hadoop_prefix }}"
+    HADOOP_CONF_DIR: "{{ hdfs_conf_dir }}"
+  become: yes
+  become_user: hdfs
+

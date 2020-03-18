@@ -1,0 +1,3 @@
+- include_playbook: openstack-create-uber-server.yml
+
+- include_playbook: openstack-create-uber-client.yml

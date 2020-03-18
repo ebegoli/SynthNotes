@@ -1,0 +1,8 @@
+---
+- hosts: localhost 
+  tasks:
+  - include_role:
+      name: openstack 
+      tasks_from: delete.yml
+    vars: 
+      instance_name: ans-test 

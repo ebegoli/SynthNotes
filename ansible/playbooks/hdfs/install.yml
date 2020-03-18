@@ -1,0 +1,17 @@
+---
+- import_playbook: preflight.yml
+
+- hosts: datanodes
+  tasks:
+  - include_role:
+      name: util
+      tasks_from: mount-nfs.yml
+    when: mount_nfs == True
+
+- hosts: namenodes:datanodes:journalnodes:clients
+  tasks:
+    - include_role:
+        name: common
+    - include_role:
+        name: hdfs
+        tasks_from: common.yml

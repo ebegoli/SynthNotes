@@ -1,0 +1,17 @@
+[Unit]
+Description=HDFS Namenode
+After=syslog.target
+
+[Service]
+User={{ hdfs_unix_user }}
+Group={{ hadoop_group_name }}
+Type=simple
+ExecStart={{ hdfs_prefix }}/sbin/hadoop-daemon.sh \
+  --config {{ hdfs_conf_dir }} start journalnode
+ExecStop={{ hdfs_prefix }}/sbin/hadoop-daemon.sh \
+  --config {{ hdfs_conf_dir }} stop journalnode
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
+

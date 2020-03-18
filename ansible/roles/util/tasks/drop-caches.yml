@@ -1,0 +1,5 @@
+---
+- name: "Frees pagecache, dentries, and inodes"
+  shell: "free && sync && echo 3 > /proc/sys/vm/drop_caches && free"
+  become: yes
+  become_user: root

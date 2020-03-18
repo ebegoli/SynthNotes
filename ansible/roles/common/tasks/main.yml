@@ -1,0 +1,17 @@
+---
+- name: Encapsulates common configs
+  block:
+  - name: Writes cluster hostnames to /etc/hosts 
+    import_tasks: hosts.yml
+  
+  - name: Installs packages 
+    import_tasks: packages.yml
+
+  # - name: Starts the atop service 
+  #   import_tasks: start-atop.yml
+
+  - name: Installs Java and sets JAVA home 
+    import_tasks: java.yml
+  become: yes
+  become_user: root
+  tags: common

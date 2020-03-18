@@ -1,0 +1,21 @@
+---
+- hosts: lock-*[0:1]
+  tasks:
+  - set_fact:
+      server_group: esnodes 
+
+- hosts: lock-*[2:3]
+  tasks:
+  - set_fact:
+      server_group: zookeepers 
+
+- hosts: lock-*
+  tasks:
+  - group_by:
+      key: "{{ server_group }}"
+
+
+- hosts: localhost
+  tasks:
+  - debug:
+      msg: "{{ groups }}"

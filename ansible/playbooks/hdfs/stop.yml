@@ -1,0 +1,21 @@
+---
+- hosts: datanodes
+  tasks:
+  - include_role:
+      name: hdfs
+      tasks_from: stop-datanode.yml
+  tags: datanode
+
+- hosts: namenodes
+  tasks:
+  - include_role:
+      name: hdfs
+      tasks_from: stop-namenode.yml
+  tags: namenode
+
+- hosts: journalnodes
+  tasks:
+  - include_role:
+      name: hdfs
+      tasks_from: stop-journalnode.yml
+  tags: journalnode

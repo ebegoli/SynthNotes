@@ -1,0 +1,5 @@
+- hosts: all 
+  tasks:
+  - include_role:
+      name: util
+      tasks_from: mount-nfs.yml

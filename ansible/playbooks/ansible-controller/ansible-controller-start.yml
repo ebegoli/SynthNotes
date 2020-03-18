@@ -1,0 +1,70 @@
+---
+- hosts: ansible-controllers
+  tasks:
+
+  - set_fact:
+      key_path: '/home/cades/.ssh/code_rsa'
+
+  - name: Copies the read-only key for the benchmarking infrastructure repo
+    copy:
+      src: '{{ key_path }}'
+      dest: '{{ key_path }}'
+      owner: 'cades'
+      mode: 0600
+
+  - name: Sets the ssh configuration
+    blockinfile:
+      path: /home/cades/.ssh/config
+      block: |
+        Host code.ornl.gov
+        RSAAuthentication yes
+        IdentityFile {{ key_path }}
+        StrictHostKeyChecking no
+      create: yes
+      mode: 0644
+
+  - name: Pulls the git repository
+    git:
+      repo: 'git@code.ornl.gov:VA-OSL/benchmarking_infrastructure.git'
+      dest: '/home/cades/bm_test'
+      key_file: '{{ key_path }}'
+
+  - block:
+    - name: Yum-installs yum-utils
+      yum:
+        name: yum-utils
+        state: present
+        update_cache: yes
+
+    - name: Yum-installs the 'Development tools' package group
+      yum:
+        name: "@Development tools"
+        state: present
+
+    - name: Yum-installs ius-release.rpm
+      yum:
+        name: https://centos7.iuscommunity.org/ius-release.rpm
+        state: present
+        update_cache: yes
+
+    - name: Yum-installs python3.6 on the ansible controller
+      yum:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      with_items:
+        - python36u
+        - python36u-pip
+        - python36u-devel
+
+    - name: Pip-installs requirements
+      pip:
+        executable: pip3.6
+        name: "{{ item }}"
+      with_items:
+        - jsonschema
+        - jmespath
+        - requests
+
+    become: yes
+    become_user: root

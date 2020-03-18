@@ -1,0 +1,14 @@
+---
+- name: Formats a new HDFS filesystem if not already formatted
+  command: "{{ hdfs_install_dir }}/bin/hdfs namenode -format {{ cluster_name }}"
+  args:
+    # creates: "{{ hdfs_install_dir }}/journalnode/data" 
+    creates: "{{ dfs_namenode_name_dir }}/current" 
+  run_once: yes
+  environment:
+    JAVA_HOME: "{{ java_home }}"
+    HADOOP_PREFIX: "{{ hadoop_prefix }}"
+    HADOOP_YARN_HOME: "{{ hadoop_prefix }}"
+    HADOOP_CONF_DIR: "{{ hdfs_conf_dir }}"
+  become: yes
+  become_user: "{{ hdfs_unix_user }}"

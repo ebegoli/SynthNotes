@@ -1,0 +1,7 @@
+---
+- name: Stops a journalnode daemon
+  command: "{{ hdfs_prefix }}/sbin/hadoop-daemon.sh --config {{ hdfs_conf_dir }} stop journalnode"
+  args:
+    removes: "{{ hdfs_pid_dir }}/hadoop-hdfs-journalnode.pid"
+  become: yes
+  become_user: hdfs

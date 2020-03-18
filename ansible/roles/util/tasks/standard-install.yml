@@ -1,0 +1,61 @@
+---
+# Standard installation from tarball
+# Requires "args_*" variables 
+# unix_user, unix_group, unix_home, generate_ssh_key,
+# parent_role_path, tar_name,
+# checksum, install_dir_version, install_dir, write_dir 
+
+- name: Creates unix user "{{ args_unix_user }}" 
+  include_role:
+    name: util
+    tasks_from: create-unix-user.yml
+  vars:
+    user: "{{ args_unix_user }}"
+    group: "{{ args_unix_group }}"
+    home: "{{ args_unix_home }}"
+    generate_ssh_key: "{{ args_generate_ssh_key }}" 
+  
+- name: Downloads tarball "{{ args_tar_name }}"
+  include_role: 
+    name: util 
+    tasks_from: download.yml
+  vars:
+    checksum_value: "{{ args_checksum }}" 
+    checksum_method: md5 
+    filename: "{{ args_tar_name }}"
+    src_url: "ftp://172.22.4.129/pub/{{ args_tar_name }}"
+    tgt_dest: "{{ args_parent_role_path }}/files/{{ args_tar_name }}"
+    
+- block:
+  - name: Untars and distributes {{ args_tar_name }} binaries 
+    unarchive: 
+      src: "files/{{ args_tar_name }}"
+      dest: "{{ deploy_dir }}"
+      creates: "{{ args_install_dir_version }}" 
+      owner: "{{ args_unix_user }}"
+      group: "{{ args_unix_group }}"
+      mode: 0775
+    
+  - name: Creates symlink {{ args_install_dir_version }} -> {{ args_install_dir }}
+    file:
+      state: link
+      src: "{{ args_install_dir_version }}"
+      dest: "{{ args_install_dir }}"
+      owner: "{{ args_unix_user }}"
+      group: "{{ args_unix_group }}"
+      mode: 0775
+      
+  - name: Makes log, pid, data, and conf directories 
+    file:
+      state: directory 
+      path: "{{ item }}"
+      owner: "{{ args_unix_user }}"
+      group: "{{ args_unix_group }}"
+      mode: 0775
+    with_items:
+      - "{{ args_conf_dir }}"
+      - "{{ args_log_dir }}"
+      - "{{ args_pid_dir }}"
+      - "{{ args_data_dir }}"
+  become: yes
+  become_user: root 

@@ -1,0 +1,6 @@
+anaconda_unix_home: "{{ home_dir }}/anaconda"
+anaconda_version: 5.0.1-Linux-x86_64 
+anaconda_checksum: c989ecc8b648ab8a64731aaee9ed2e7e 
+anaconda_name: "Anaconda3-{{ anaconda_version }}"
+anaconda_install_dir_version: "{{ deploy_dir }}/{{ anaconda_name }}"
+anaconda_install_dir: "{{ deploy_dir }}/anaconda"

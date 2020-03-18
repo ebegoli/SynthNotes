@@ -1,0 +1,13 @@
+---
+- name: Includes role variables 
+  include_vars:
+    dir: '.'
+
+- name: Creates a server image snapshot from {{ server_name }} 
+  os_server_snapshot:
+    server: "{{ server_name }}"
+    snapshot_name: "{{ snapshot_name }}"
+    description: "{{ description }}"
+    auth: "{{ openstack_auth }}"
+  delegate_to: localhost
+  run_once: yes

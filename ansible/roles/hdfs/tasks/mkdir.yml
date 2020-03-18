@@ -1,0 +1,17 @@
+---
+- block:
+  - name: Creates an HDFS directory {{ new_hdfs_dir }} with the -p option
+    command: "./bin/hadoop fs -mkdir -p {{ new_hdfs_dir }}"
+    args:
+      chdir: "{{ hadoop_prefix }}"
+  - name: Gives ownership of {{ new_hdfs_dir }} to {{ owner }}
+    command: "./bin/hadoop fs -chown -R {{ owner }} {{ new_hdfs_dir }}"
+    args:
+      chdir: "{{ hadoop_prefix }}"
+  environment:
+    JAVA_HOME: "{{ java_home }}"
+    HADOOP_PREFIX: "{{ hadoop_prefix }}"
+    HADOOP_YARN_HOME: "{{ hadoop_prefix }}"
+    HADOOP_CONF_DIR: "{{ hdfs_conf_dir }}"
+  become: yes
+  become_user: "{{ hdfs_unix_user }}" 

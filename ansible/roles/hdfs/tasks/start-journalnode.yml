@@ -1,0 +1,17 @@
+---
+- name: Starts a journalnode daemon
+  command: "{{ hdfs_prefix }}/sbin/hadoop-daemon.sh --config {{ hdfs_conf_dir }} start journalnode"
+  args:
+    creates: "{{ hdfs_pid_dir }}/hadoop-hdfs-journalnode.pid"
+  become: yes
+  become_user: hdfs
+
+- name: Starts HDFS journalnode service
+  systemd:
+    name: journalnode
+    state: started
+    enabled: no 
+    daemon_reload: yes
+  become: yes
+  become_user: root
+  when: False

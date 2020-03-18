@@ -1,0 +1,6 @@
+- hosts: all 
+  tasks:
+  - name: Gets server facts
+    os_server_facts:
+  - debug:
+      var: openstack_servers

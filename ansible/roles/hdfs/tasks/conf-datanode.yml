@@ -1,0 +1,6 @@
+- name: Creates the datanode systemd service file
+  template:
+    src: etc/systemd/system/datanode.service.j2
+    dest: /etc/systemd/system/datanode.service
+  become: yes
+  become_user: root

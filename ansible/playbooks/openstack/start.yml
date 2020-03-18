@@ -1,0 +1,11 @@
+---
+- hosts: localhost 
+  tasks:
+  - include_role:
+      name: openstack 
+      tasks_from: create-server.yml
+    vars: 
+      server_name: os-test 
+      image: CADES_CentOS-7.4_v20180123_1 
+      flavor: m1.small
+    

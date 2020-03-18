@@ -1,0 +1,6 @@
+- include_role:
+    name: common
+- include_role:
+    name: anaconda 
+- include_role:
+    name: python-client 

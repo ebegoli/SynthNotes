@@ -1,0 +1,36 @@
+---
+- name: "Creates hdfs superuser {{ new_hdfs_superuser }}"
+  block:
+  - name: Checks for existence of user HDFS home directory
+    shell: ". {{ hdfs_unix_home }}/.bash_profile && ./bin/hadoop fs -ls /{{ new_hdfs_superuser }}"
+    args: 
+      chdir: "{{ hadoop_prefix }}"
+    check_mode: no 
+    register: user_exists
+    ignore_errors: yes 
+
+  - debug:
+      var: user_exists
+
+  - name: Creates hdfs user directories if not present 
+    shell: ". {{ hdfs_unix_home }}/.bash_profile && ./bin/hadoop fs -mkdir -p /{{ new_hdfs_superuser }}" 
+    args: 
+      chdir: "{{ hadoop_prefix }}"
+    when: user_exists.rc != 0
+
+  - name: Gives hdfs users their own home directories  
+    shell: ". {{ hdfs_unix_home }}/.bash_profile && ./bin/hadoop fs -chown -R {{ new_hdfs_superuser }}:supergroup /{{ new_hdfs_superuser }}" 
+    args: 
+      chdir: "{{ hadoop_prefix }}"
+    when: user_exists.rc != 0
+
+  - name: Refresh hdfs user-to-group mappings
+    shell: ". {{ hdfs_unix_home }}/.bash_profile && ./bin/hdfs dfsadmin -refreshUserToGroupsMappings"
+    args: 
+      chdir: "{{ hadoop_prefix }}"
+    when: user_exists.rc != 0
+  become: yes
+  become_user: hdfs
+  environment: 
+    JAVA_HOME: "{{ java_home }}"
+  run_once: yes

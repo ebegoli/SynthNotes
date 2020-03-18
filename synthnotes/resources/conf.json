@@ -1,8 +1,0 @@
-{
-  "template": "test.template",
-  "mappings": "subs.json",
-  "n_notes": 10,
-  "prefix": "note_",
-  "extension": "note",
-  "output_dir": "data"
-}

@@ -1,0 +1,54 @@
+# Assumes that keys were generated on all hosts for each user
+- name: Fetches the public ssh key owned by {{ key_user }}
+  command: "cat {{ key_user_unix_home }}/.ssh/id_rsa.pub"
+  become: yes
+  become_user: root
+  when: inventory_hostname in key_source_hosts
+  register: ssh_keys
+
+# - name: Adds public keys to authorized_keys on all "{{ key_target_hosts }}" 
+#   lineinfile: 
+#     path: "{{ key_user_unix_home }}/.ssh/authorized_keys"
+#     owner: "{{ key_user }}"
+#     state: present
+#     create: yes
+#     line: "{{ item[0] }}"
+#   delegate_to: "{{ item[1] }}"
+#   with_nested:
+#     - "{{ ssh_keys.stdout }}"
+#     - "{{ key_target_hosts }}"
+#   become: yes
+#   become_user: root
+
+- name: Adds public keys to authorized_keys on all "{{ key_target_hosts }}" 
+  authorized_key: 
+    user: "{{ key_user }}"
+    path: "{{ key_user_unix_home }}/.ssh/authorized_keys"
+    state: present
+    manage_dir: no 
+    key: "{{ item[0] }}"
+  delegate_to: "{{ item[1] }}"
+  with_nested:
+    - "{{ ssh_keys.stdout }}"
+    - "{{ key_target_hosts }}"
+  become: yes
+  become_user: root
+
+- shell: "ssh-keyscan -H {{ item }} >> ~/.ssh/known_hosts"
+  when: inventory_hostname in key_target_hosts
+  with_items: "{{ key_target_hosts }}"
+
+# - name: Adds public keys of {{ key_target_hosts }} to known_hosts on {{ key_source_hosts }} 
+#   known_hosts: 
+#     path: "{{ key_user_unix_home }}/.ssh/known_hosts"
+#     state: present
+#     name: "{{ inventory_hostname }}"
+#     key: "{{ item }}"
+#     hash_host: yes
+#   when: inventory_hostname in key_target_hosts
+#   with_items:
+#     - "{{ key_target_hosts }}"
+#   become: yes
+#   become_user: "{{ key_user }}"
+#   ignore_errors: yes
+

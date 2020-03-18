@@ -1,0 +1,62 @@
+---
+- name: Sets up common dependencies for Anaconda 
+  block:
+  - name: Imports vars from role path {{ role_path }} 
+    include_vars: main.yml
+  
+  - name: Stores role path for current role
+    set_fact:
+      anaconda_common_role_path: "{{ role_path }}"
+
+  - name: Downloads anaconda code to ansible controller
+    include_role: 
+      name: util 
+      tasks_from: download.yml
+    vars:
+      checksum_value: "{{ anaconda_checksum }}" 
+      checksum_method: md5 
+      filename: "{{ anaconda_name }}.sh"
+      src_url: "https://repo.continuum.io/archive/{{ anaconda_name }}.sh"
+      tgt_dest: "{{ anaconda_common_role_path }}/files/{{ anaconda_name }}.sh"
+    
+  - name: Creates anaconda unix user
+    include_role:
+      name: util
+      tasks_from: create-unix-user.yml
+    vars:
+      user: anaconda 
+      group: "{{ hadoop_group_name }}"
+      home: "{{ anaconda_unix_home }}" 
+      generate_ssh_key: no
+
+  - block:
+    - name: Copies anaconda installer to each host 
+      copy: 
+        src: files/{{ anaconda_name }}.sh
+        dest: "{{ anaconda_unix_home }}/{{ anaconda_name }}.sh"
+    
+    - name: Installs anaconda using installer
+      command: "/bin/sh ./{{ anaconda_name }}.sh -b -p {{ anaconda_install_dir_version }}"
+      args:
+        chdir: "{{ anaconda_unix_home }}"
+        creates: "{{ anaconda_install_dir_version }}/bin"
+
+    - name: Makes anaconda own {{ anaconda_install_dir_version }}
+      file:
+        state: directory 
+        path: "{{ anaconda_install_dir_version }}"
+        owner: anaconda 
+        group: "{{ hadoop_group_name }}"
+        recurse: yes
+
+    - name: Creates symlink {{ anaconda_install_dir_version }} -> {{ anaconda_install_dir }}
+      file:
+        state: link
+        src: "{{ anaconda_install_dir_version }}"
+        dest: "{{ anaconda_install_dir }}"
+        owner: anaconda
+        group: "{{ hadoop_group_name }}"
+    become: yes
+
+  - name: Sets Anaconda configs
+    import_tasks: conf.yml

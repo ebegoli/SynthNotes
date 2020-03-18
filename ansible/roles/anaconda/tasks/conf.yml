@@ -1,0 +1,7 @@
+---
+- name: Sets anaconda environment variables 
+  template:
+    src: etc/profile.d/anaconda.sh.j2
+    dest: /etc/profile.d/anaconda.sh
+    mode: 0644
+  become: yes

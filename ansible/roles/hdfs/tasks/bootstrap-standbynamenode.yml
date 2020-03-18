@@ -1,0 +1,12 @@
+---
+- name: Copies cluster metadata from namenode to {{ inventory_hostname }}
+  command: "{{ hadoop_prefix }}/bin/hdfs namenode -bootstrapStandby"
+  args:
+    creates: "{{ dfs_namenode_name_dir }}/current"
+  become: yes
+  become_user: hdfs
+  environment:
+    JAVA_HOME: "{{ java_home }}"
+    HADOOP_PREFIX: "{{ hadoop_prefix }}"
+    HADOOP_YARN_HOME: "{{ hadoop_prefix }}"
+    HADOOP_CONF_DIR: "{{ hdfs_conf_dir }}"

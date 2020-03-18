@@ -1,0 +1,27 @@
+---
+
+- import_playbook: preflight.yml
+
+- hosts: namenodes:datanodes:journalnodes:clients
+  tasks:
+    - include_role:
+        name: hdfs
+        tasks_from: conf.yml
+
+- hosts: journalnodes
+  tasks:
+  - include_role:
+      name: hdfs
+      tasks_from: conf-journalnode.yml
+
+- hosts: namenodes
+  tasks:
+  - include_role:
+      name: hdfs
+      tasks_from: conf-namenode.yml
+
+- hosts: datanodes
+  tasks:
+  - include_role:
+      name: hdfs
+      tasks_from: conf-datanode.yml
