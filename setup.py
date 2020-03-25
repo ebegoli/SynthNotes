@@ -19,12 +19,12 @@ requirements = [
     "pyarrow",
     "fastparquet",
     "stringdist",
-    "python-snappy",
     "scikit-learn",
     "scipy",
 
 ]
 
+#    "python-snappy",
 
 setup(
     name='synthnotes',
