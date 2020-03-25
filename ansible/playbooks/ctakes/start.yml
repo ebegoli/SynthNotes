@@ -1,7 +1,0 @@
-- hosts: ctakes_servers
-  tasks:
-  - include_role:
-      name: common
-  - include_role:
-      name: ctakes
-      tasks_from: common.yml

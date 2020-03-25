@@ -1,2 +1,0 @@
-- name: Imports role variables
-  include_vars: main.yml

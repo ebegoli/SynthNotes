@@ -1,8 +1,0 @@
-openstack_auth: 
-  auth_url: https://cloud.cades.ornl.gov:13000/v3
-  username: "{{ vault_openstack_username }}" 
-  password: "{{ vault_openstack_password }}"
-  project_name: "{{ vault_openstack_project_name }}" 
-  project_domain_name: ornl
-  user_domain_name: ornl
-openstack_key_name: "{{ vault_openstack_key_name }}" 

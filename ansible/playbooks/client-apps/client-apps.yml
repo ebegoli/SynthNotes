@@ -1,6 +1,0 @@
----
-- hosts: clients 
-  roles:
-    - common
-    - anaconda
-    - python-client

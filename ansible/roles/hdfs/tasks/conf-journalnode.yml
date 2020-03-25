@@ -1,6 +1,0 @@
-- name: Creates the journalnode systemd service file
-  template:
-    src: etc/systemd/system/journalnode.service.j2
-    dest: /etc/systemd/system/journalnode.service
-  become: yes
-  become_user: root

@@ -1,6 +1,0 @@
----
-- hosts: localhost 
-  tasks:
-  - include_role:
-      name: openstack 
-      tasks_from: attach-tarball-volume.yml

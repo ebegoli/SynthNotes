@@ -1,7 +1,0 @@
----
-- name: Stops HDFS NameNode daemon
-  command: "{{ hadoop_prefix }}/sbin/hadoop-daemon.sh --config {{ hadoop_conf_dir }} --script hdfs stop namenode"
-  args:
-    removes: "{{ dfs_namenode_name_dir }}/in_use.lock"
-  become: yes
-  become_user: hdfs

@@ -1,2 +1,0 @@
-- name: Imports python variables
-  include_vars: main.yml
