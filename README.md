@@ -55,6 +55,7 @@ To run preprocessing run:
 $ synthnotes preprocess --pq_files parquet/files/path \
 --output path/to/output/dir \
 --mimic_notes path/to/mimic-notes/parquet/file
+```
 
 To perform clustering run: 
 
