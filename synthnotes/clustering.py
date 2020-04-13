@@ -10,18 +10,19 @@ from sklearn.cluster import KMeans, MiniBatchKMeans
 
 
 class Clusterer(object):
-    def __init__(self, pq_files, output):
+    def __init__(self, pq_files, output, num_clusters):
         self.data_dir = pq_files
         self.output = output
+        self.num_clusters = num_clusters
 
-    def cluster(self, n_clusters=120):
+    def cluster(self):
         templates = pd.read_parquet(f'{self.data_dir}/templates.parquet' )
         sentences = pd.read_parquet(f'{self.data_dir}/sentences.parquet')
         mentions = pd.read_parquet(f'{self.data_dir}/mentions.parquet')
         umls = pd.read_parquet(f'{self.data_dir}/umls.parquet')
 
         km = KMeans( init='k-means++', max_iter=100, n_init=1,
-                 n_clusters=n_clusters, verbose=False)
+                 n_clusters=self.num_clusters, verbose=False)
 
         vectors = get_vectors(templates)
 
@@ -49,11 +50,3 @@ class Clusterer(object):
 def get_vectors(df):
     tf = TfidfVectorizer()
     return tf.fit_transform(df['sem_template'])
-
-
-
-
-
-
-
-

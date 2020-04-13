@@ -1,7 +1,8 @@
 import click
 import os
 import pandas as pd
-#from collections import OrderedDict
+import random
+import numpy.random as npr
 
 from synthnotes.xml_processing import CtakesXmlParser
 from synthnotes.preprocessor import Preprocessor
@@ -11,20 +12,6 @@ from synthnotes.generator import Generator
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-#class NaturalOrderGroup(click.Group):
-#     def __init__(self, name=None, commands=None, **attrs):
-#         if commands is None:
-#             commands = OrderedDict()
-#         elif not isinstance(commands, OrderedDict):
-#             commands = OrderedDict(commands)
-#         click.Group.__init__(self, name=name,
-#                              commands=commands,
-#                              **attrs)
-#
-#    def list_commands(self, ctx):
-#        return self.commands.keys()
-
-#@click.group(cls=NaturalOrderGroup)
 @click.group()
 def cli():
     pass
@@ -68,21 +55,27 @@ def preprocess(pq_files, output, mimic_notes):
 @cli.command()
 @click.option('--pq_files', default='data/processed_dfs', help='File path to directory of processed xml data parquet files')
 @click.option('--output', default='data/clustering', help='File path to directory for storage for clustering data')
-def cluster(pq_files, output):
+@click.option('--n_clusters',default='120',help='Optional; specify number of clusters')
+def cluster(pq_files, output, n_clusters):
     pq_files = pq_files.rstrip('/') # remove trailing /
     output = output.rstrip('/')
     os.makedirs(output,exist_ok=True) # create output directory if it does not exist
-    clusterer = Clusterer(pq_files, output)
+    num_clusters = int(n_clusters)
+    clusterer = Clusterer(pq_files, output, num_clusters)
     clusterer.cluster()
 
 @cli.command()
 @click.option('-n', default=1, help='Number of notes to generate')
 @click.option('--pq_files', default='data/clustering', help='File path to directory of clustering data')
 @click.option('--output', default='data/generated_notes', help='File path to directory in which to output generated notes')
-def generate(n, pq_files, output):
+@click.option('--seed',default=None,help='Optional; specify random seed.')
+def generate(n, pq_files, output, seed):
     pq_files = pq_files.rstrip('/') # remove trailing /
     output = output.rstrip('/')
     os.makedirs(output,exist_ok=True) # create output directory if it does not exist
+    if seed is not None:
+        random.seed(int(seed))
+        npr.seed(int(seed))
     gen = Generator(pq_files, output)
     gen.generate(n_notes=n)
 
